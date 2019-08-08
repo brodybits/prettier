@@ -20,7 +20,7 @@ jobs:
   - job: Dev_Test_Windows_Nodejs_v6
     displayName: Dev Test on Windows Node v6
     pool:
-      vmImage: vs2017-win2016
+      vmImage: windows-2019
     variables:
       node_version: 6
       TEST_CRLF: true
@@ -30,7 +30,7 @@ jobs:
   - job: Dev_Test_Windows
     displayName: Dev Test on Windows Node v10
     pool:
-      vmImage: vs2017-win2016
+      vmImage: windows-2019
     variables:
       node_version: 10
       TEST_CRLF: true
