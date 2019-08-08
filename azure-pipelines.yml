@@ -39,7 +39,7 @@ jobs:
 
   - job: Dev_Test_macOS
     pool:
-      vmImage: macos-10.13
+      vmImage: macos-10.14
     strategy:
       matrix:
         Node_v6:
