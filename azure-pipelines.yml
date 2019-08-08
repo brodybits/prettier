@@ -37,6 +37,18 @@ jobs:
     steps:
       - template: .azure-pipelines/jobs/dev-test.yml
 
+  - job: Dev_Test_macOS_Mojave
+    pool:
+      vmImage: macos-10.14
+    strategy:
+      matrix:
+        Node_v6:
+          node_version: 8
+        Node_v10:
+          node_version: 10
+    steps:
+      - template: .azure-pipelines/jobs/dev-test.yml
+
   - job: Dev_Test_Coverage_macOS
     displayName: Dev Test with coverage on macOS Node.js v10
     pool:
