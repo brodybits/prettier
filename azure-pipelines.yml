@@ -46,6 +46,15 @@ jobs:
     steps:
       - template: .azure-pipelines/jobs/dev-test.yml
 
+  - job: Dev_Test_in_sequence_Linux
+    displayName: Dev Test in sequence on Linux Node.js v6
+    pool:
+      vmImage: "Ubuntu 16.04"
+    variables:
+      node_version: 6
+    steps:
+      - template: .azure-pipelines/jobs/dev-test-in-sequence.yml
+
   - job: Prod_Build
     displayName: Prod Build on Linux Node v10
     pool:
