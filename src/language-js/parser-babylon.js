@@ -8,7 +8,7 @@ const hasPragma = require("./pragma").hasPragma;
 const locFns = require("./loc");
 const postprocess = require("./postprocess");
 
-function babelOptions(extraOptions, extraPlugins) {
+function babelOptions(extraOptions, extraPlugins, includeJsx = true) {
   return Object.assign(
     {
       sourceType: "module",
@@ -19,7 +19,6 @@ function babelOptions(extraOptions, extraPlugins) {
       allowUndeclaredExports: true,
       errorRecovery: true,
       plugins: [
-        "jsx",
         "doExpressions",
         "objectRestSpread",
         "classProperties",
@@ -42,10 +41,35 @@ function babelOptions(extraOptions, extraPlugins) {
         "classPrivateMethods",
         "v8intrinsic",
         "partialApplication"
-      ].concat(extraPlugins)
+      ].concat(extraPlugins, includeJsx ? "jsx" : [])
     },
     extraOptions
   );
+}
+
+function createCombinations(extraPlugins, includeJsx) {
+  return [
+    babelOptions(
+      { strictMode: true },
+      ["decorators-legacy"].concat(extraPlugins),
+      includeJsx
+    ),
+    babelOptions(
+      { strictMode: false },
+      ["decorators-legacy"].concat(extraPlugins),
+      includeJsx
+    ),
+    babelOptions(
+      { strictMode: true },
+      [["decorators", { decoratorsBeforeExport: false }]].concat(extraPlugins),
+      includeJsx
+    ),
+    babelOptions(
+      { strictMode: false },
+      [["decorators", { decoratorsBeforeExport: false }]].concat(extraPlugins),
+      includeJsx
+    )
+  ];
 }
 
 function createParse(parseMethod, extraPlugins) {
@@ -53,24 +77,13 @@ function createParse(parseMethod, extraPlugins) {
     // Inline the require to avoid loading all the JS if we don't use it
     const babel = require("@babel/parser");
 
-    const combinations = [
-      babelOptions(
-        { strictMode: true },
-        ["decorators-legacy"].concat(extraPlugins)
-      ),
-      babelOptions(
-        { strictMode: false },
-        ["decorators-legacy"].concat(extraPlugins)
-      ),
-      babelOptions(
-        { strictMode: true },
-        [["decorators", { decoratorsBeforeExport: false }]].concat(extraPlugins)
-      ),
-      babelOptions(
-        { strictMode: false },
-        [["decorators", { decoratorsBeforeExport: false }]].concat(extraPlugins)
-      )
-    ];
+    let combinations = createCombinations(extraPlugins);
+
+    if (extraPlugins && extraPlugins.indexOf("typescript") !== -1) {
+      combinations = combinations.concat(
+        createCombinations(extraPlugins, false)
+      );
+    }
 
     let ast;
     try {
