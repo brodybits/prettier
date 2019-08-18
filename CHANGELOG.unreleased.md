@@ -148,6 +148,33 @@ class Foo {
 }
 ```
 
+#### TypeScript: Add a new parser `babel-ts` to parse TypeScript syntax via Babel ([#6400] by [@JounQin])
+
+<!-- prettier-ignore -->
+```ts
+// Input
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: any, b: any) {
+  return a + b;
+}
+
+// Output (Prettier stable)
+SyntaxError: Unexpected token, expected "{" (1:43)
+> 1 | function add(a: number, b: number): number;
+    |                                           ^
+  2 | function add(a: string, b: string): string;
+  3 | function add(a: any, b: any) {
+  4 |   return a + b;
+
+// Output (Prettier master)
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: any, b: any) {
+  return a + b;
+}
+```
+
 #### API: Add `resolveConfig` option to `getFileInfo()` ([#6666] by [@kaicataldo])
 
 Add a `resolveConfig: boolean` option to `prettier.getFileInfo()` that, when set to `true`, will resolve the configuration for the given file path. This allows consumers to take any overridden parsers into account.
@@ -1388,6 +1415,7 @@ const bigints = [200_000n, 0x0000_000an, 0b0111_1111n];
 [#6381]: https://github.com/prettier/prettier/pull/6381
 [#6382]: https://github.com/prettier/prettier/pull/6382
 [#6397]: https://github.com/prettier/prettier/pull/6397
+[#6400]: https://github.com/prettier/prettier/pull/6400
 [#6404]: https://github.com/prettier/prettier/pull/6404
 [#6411]: https://github.com/prettier/prettier/pull/6411
 [#6412]: https://github.com/prettier/prettier/pull/6412
