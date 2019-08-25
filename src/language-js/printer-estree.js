@@ -2391,6 +2391,7 @@ function printPathNoParens(path, options, print, args) {
       parts.push(concat(printClass(path, options, print)));
       return concat(parts);
     case "TSInterfaceHeritage":
+    case "TSExpressionWithTypeArguments": // Babel AST
       parts.push(path.call(print, "expression"));
 
       if (n.typeParameters) {
@@ -3223,9 +3224,13 @@ function printPathNoParens(path, options, print, args) {
         )
       );
 
-      if (n.returnType) {
+      if (n.returnType || n.typeAnnotation) {
         const isType = n.type === "TSConstructorType";
-        parts.push(isType ? " => " : ": ", path.call(print, "returnType"));
+        parts.push(
+          isType ? " => " : ": ",
+          path.call(print, "returnType"),
+          path.call(print, "typeAnnotation")
+        );
       }
       return concat(parts);
     }
@@ -3285,8 +3290,12 @@ function printPathNoParens(path, options, print, args) {
         )
       );
 
-      if (n.returnType) {
-        parts.push(": ", path.call(print, "returnType"));
+      if (n.returnType || n.typeAnnotation) {
+        parts.push(
+          ": ",
+          path.call(print, "returnType"),
+          path.call(print, "typeAnnotation")
+        );
       }
       return group(concat(parts));
     case "TSNamespaceExportDeclaration":
@@ -3667,8 +3676,8 @@ function printMethod(path, options, print) {
 
   if (!kind || kind === "init" || kind === "method" || kind === "constructor") {
     if (value.async) {
-      parts.push("async ");
-    }
+    parts.push("async ");
+  }
     if (value.generator) {
       parts.push("*");
     }
@@ -3687,17 +3696,17 @@ function printMethod(path, options, print) {
   );
 
   return concat(parts);
-}
+  }
 
 function printMethodInternal(path, options, print) {
   const parts = [
     printFunctionTypeParameters(path, options, print),
-    group(
-      concat([
+          group(
+            concat([
         printFunctionParams(path, print, options),
         printReturnType(path, print, options)
-      ])
-    )
+            ])
+          )
   ];
 
   if (path.getNode().body) {
