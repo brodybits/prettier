@@ -8,7 +8,7 @@ const hasPragma = require("./pragma").hasPragma;
 const locFns = require("./loc");
 const postprocess = require("./postprocess");
 
-function babelOptions(extraOptions, extraPlugins, includeJsx = true) {
+function babelOptions(extraOptions, extraPlugins, includeJsx) {
   return Object.assign(
     {
       sourceType: "module",
@@ -47,7 +47,7 @@ function babelOptions(extraOptions, extraPlugins, includeJsx = true) {
   );
 }
 
-function createCombinations(extraPlugins, includeJsx) {
+function createCombinations(extraPlugins, includeJsx, tsIncluded) {
   return [
     babelOptions(
       { strictMode: true },
@@ -58,18 +58,27 @@ function createCombinations(extraPlugins, includeJsx) {
       { strictMode: false },
       ["decorators-legacy"].concat(extraPlugins),
       includeJsx
-    ),
-    babelOptions(
-      { strictMode: true },
-      [["decorators", { decoratorsBeforeExport: false }]].concat(extraPlugins),
-      includeJsx
-    ),
-    babelOptions(
-      { strictMode: false },
-      [["decorators", { decoratorsBeforeExport: false }]].concat(extraPlugins),
-      includeJsx
     )
-  ];
+  ].concat(
+    tsIncluded
+      ? []
+      : [
+          babelOptions(
+            { strictMode: true },
+            [["decorators", { decoratorsBeforeExport: false }]].concat(
+              extraPlugins
+            ),
+            includeJsx
+          ),
+          babelOptions(
+            { strictMode: false },
+            [["decorators", { decoratorsBeforeExport: false }]].concat(
+              extraPlugins
+            ),
+            includeJsx
+          )
+        ]
+  );
 }
 
 function createParse(parseMethod, extraPlugins) {
@@ -77,11 +86,14 @@ function createParse(parseMethod, extraPlugins) {
     // Inline the require to avoid loading all the JS if we don't use it
     const babel = require("@babel/parser");
 
-    let combinations = createCombinations(extraPlugins);
+    const tsIncluded =
+      extraPlugins && extraPlugins.indexOf("typescript") !== -1;
 
-    if (extraPlugins && extraPlugins.indexOf("typescript") !== -1) {
+    let combinations = createCombinations(extraPlugins, true, tsIncluded);
+
+    if (tsIncluded) {
       combinations = combinations.concat(
-        createCombinations(extraPlugins, false)
+        createCombinations(extraPlugins, false, tsIncluded)
       );
     }
 
