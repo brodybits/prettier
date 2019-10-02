@@ -243,7 +243,25 @@ printWidth: 80
 
 <Hello>
     test   <World />   test
+</Hello>123
+
+---
+
+<Hello>
+    test   <World />   test
 </Hello>
+<Hello>
+    test   <World />   test
+</Hello>123
+
+---
+
+<Hello>
+    test   <World />   test
+</Hello>       123
+<Hello>
+    test   <World />   test
+</Hello>       234
 
 ---
 
@@ -258,7 +276,25 @@ printWidth: 80
 
 <Hello>
   test <World /> test
+</Hello>123
+
+---
+
+<Hello>
+  test <World /> test
 </Hello>
+<Hello>
+  test <World /> test
+</Hello>123
+
+---
+
+<Hello>
+  test <World /> test
+</Hello> 123
+<Hello>
+  test <World /> test
+</Hello> 234
 
 ---
 
@@ -283,7 +319,25 @@ semi: false
 
 <Hello>
     test   <World />   test
+</Hello>123
+
+---
+
+<Hello>
+    test   <World />   test
 </Hello>
+<Hello>
+    test   <World />   test
+</Hello>123
+
+---
+
+<Hello>
+    test   <World />   test
+</Hello>       123
+<Hello>
+    test   <World />   test
+</Hello>       234
 
 ---
 
@@ -298,7 +352,25 @@ semi: false
 
 <Hello>
   test <World /> test
+</Hello>123
+
+---
+
+<Hello>
+  test <World /> test
 </Hello>
+<Hello>
+  test <World /> test
+</Hello>123
+
+---
+
+<Hello>
+  test <World /> test
+</Hello> 123
+<Hello>
+  test <World /> test
+</Hello> 234
 
 ---
 
@@ -393,7 +465,7 @@ export  const   foo    = {
 <Foo bg='red'>
       <Bar    >hi    </Bar>
        {  hello       }
-       {     /* another commment */}
+       {     /* another comment */}
 </Foo>
 
 \`\`\`
@@ -432,7 +504,7 @@ I'm an awesome paragraph.
 <Foo bg="red">
   <Bar>hi </Bar>
   {hello}
-  {/* another commment */}
+  {/* another comment */}
 </Foo>
 
 \`\`\`
@@ -484,7 +556,7 @@ export  const   foo    = {
 <Foo bg='red'>
       <Bar    >hi    </Bar>
        {  hello       }
-       {     /* another commment */}
+       {     /* another comment */}
 </Foo>
 
 \`\`\`
@@ -523,7 +595,7 @@ I'm an awesome paragraph.
 <Foo bg="red">
   <Bar>hi </Bar>
   {hello}
-  {/* another commment */}
+  {/* another comment */}
 </Foo>
 
 \`\`\`

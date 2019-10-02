@@ -544,6 +544,7 @@ function printPathNoParens(path, options, print, args) {
         n !== parent.body &&
         (parent.type === "IfStatement" ||
           parent.type === "WhileStatement" ||
+          parent.type === "SwitchStatement" ||
           parent.type === "DoWhileStatement");
 
       const parts = printBinaryishExpressions(
@@ -568,7 +569,8 @@ function printPathNoParens(path, options, print, args) {
         return concat(parts);
       }
 
-      // Break between the parens in unaries or in a member expression, i.e.
+      // Break between the parens in
+      // unaries or in a member or specific call expression, i.e.
       //
       //   (
       //     a &&
@@ -576,6 +578,7 @@ function printPathNoParens(path, options, print, args) {
       //     c
       //   ).call()
       if (
+        (parent.type === "CallExpression" && parent.callee === n) ||
         parent.type === "UnaryExpression" ||
         ((parent.type === "MemberExpression" ||
           parent.type === "OptionalMemberExpression") &&
@@ -1207,7 +1210,7 @@ function printPathNoParens(path, options, print, args) {
         return printMemberChain(path, options, print);
       }
 
-      return concat([
+      const contents = concat([
         isNew ? "new " : "",
         path.call(print, "callee"),
         optional,
@@ -1217,6 +1220,14 @@ function printPathNoParens(path, options, print, args) {
         printFunctionTypeParameters(path, options, print),
         printArgumentsList(path, options, print)
       ]);
+
+      // We group here when the callee is itself a call expression.
+      // See `isLongCurriedCallExpression` for more info.
+      if (isCallOrOptionalCallExpression(n.callee)) {
+        return group(contents);
+      }
+
+      return contents;
     }
     case "TSInterfaceDeclaration":
       if (isNodeStartingWithDeclare(n, options)) {
@@ -1379,9 +1390,13 @@ function printPathNoParens(path, options, print, args) {
       );
 
       let content;
-      if (props.length === 0 && !n.typeAnnotation) {
+      if (props.length === 0) {
         if (!hasDanglingComments(n)) {
-          return concat([leftBrace, rightBrace]);
+          return concat([
+            leftBrace,
+            rightBrace,
+            printTypeAnnotation(path, options, print)
+          ]);
         }
 
         content = group(
@@ -1390,7 +1405,8 @@ function printPathNoParens(path, options, print, args) {
             comments.printDanglingComments(path, options),
             softline,
             rightBrace,
-            printOptionalToken(path)
+            printOptionalToken(path),
+            printTypeAnnotation(path, options, print)
           ])
         );
       } else {
@@ -1419,6 +1435,7 @@ function printPathNoParens(path, options, print, args) {
         (n.type === "ObjectPattern" &&
           parent &&
           shouldHugArguments(parent) &&
+          !n.decorators &&
           parent.params[0] === n) ||
         (shouldHugType(n) &&
           parentParentParent &&
@@ -2813,15 +2830,22 @@ function printPathNoParens(path, options, print, args) {
       let hasParens;
 
       if (n.type === "TSUnionType") {
+        const grandParent = path.getNode(2);
         const greatGrandParent = path.getParentNode(2);
         const greatGreatGrandParent = path.getParentNode(3);
 
         hasParens =
-          greatGrandParent &&
-          greatGrandParent.type === "TSParenthesizedType" &&
-          greatGreatGrandParent &&
-          (greatGreatGrandParent.type === "TSUnionType" ||
-            greatGreatGrandParent.type === "TSIntersectionType");
+          (parent.type === "TSParenthesizedType" &&
+            (grandParent.type === "TSAsExpression" ||
+              grandParent.type === "TSUnionType" ||
+              grandParent.type === "TSIntersectionType" ||
+              grandParent.type === "TSTypeOperator" ||
+              grandParent.type === "TSArrayType")) ||
+          (greatGrandParent &&
+            greatGrandParent.type === "TSParenthesizedType" &&
+            greatGreatGrandParent &&
+            (greatGreatGrandParent.type === "TSUnionType" ||
+              greatGreatGrandParent.type === "TSIntersectionType"));
       } else {
         hasParens = pathNeedsParens(path, options);
       }
@@ -3253,7 +3277,7 @@ function printPathNoParens(path, options, print, args) {
                 : "",
               ": ",
               path.call(print, "typeAnnotation"),
-              shouldBreak && options.semi ? ";" : ""
+              ifBreak(semi, "")
             ])
           ),
           comments.printDanglingComments(path, options, /* sameIndent */ true),
@@ -3740,8 +3764,8 @@ function couldGroupArg(arg) {
       (arg.properties.length > 0 || arg.comments)) ||
     (arg.type === "ArrayExpression" &&
       (arg.elements.length > 0 || arg.comments)) ||
-    arg.type === "TSTypeAssertion" ||
-    arg.type === "TSAsExpression" ||
+    (arg.type === "TSTypeAssertion" && couldGroupArg(arg.expression)) ||
+    (arg.type === "TSAsExpression" && couldGroupArg(arg.expression)) ||
     arg.type === "FunctionExpression" ||
     (arg.type === "ArrowFunctionExpression" &&
       // we want to avoid breaking inside composite return types but not simple keywords
@@ -3992,40 +4016,47 @@ function isSimpleTemplateLiteral(node) {
   });
 }
 
-const functionCompositionFunctionNames = new Set([
-  "pipe", // RxJS, Ramda
-  "pipeP", // Ramda
-  "pipeK", // Ramda
-  "compose", // Ramda, Redux
-  "composeFlipped", // Not from any library, but common in Haskell, so supported
-  "composeP", // Ramda
-  "composeK", // Ramda
-  "flow", // Lodash
-  "flowRight", // Lodash
-  "connect", // Redux
-  "createSelector" // Reselect
-]);
-const ordinaryMethodNames = new Set([
-  "connect" // GObject, MongoDB
-]);
-
-function isFunctionCompositionFunction(node) {
-  switch (node.type) {
-    case "OptionalMemberExpression":
-    case "MemberExpression": {
-      return (
-        isFunctionCompositionFunction(node.property) &&
-        !ordinaryMethodNames.has(node.property.name)
-      );
-    }
-    case "Identifier": {
-      return functionCompositionFunctionNames.has(node.name);
-    }
-    case "StringLiteral":
-    case "Literal": {
-      return functionCompositionFunctionNames.has(node.value);
+// Logic to check for args with multiple anonymous functions. For instance,
+// the following call should be split on multiple lines for readability:
+// source.pipe(map((x) => x + x), filter((x) => x % 2 === 0))
+function isFunctionCompositionArgs(args) {
+  if (args.length <= 1) {
+    return false;
+  }
+  let count = 0;
+  for (const arg of args) {
+    if (isFunctionOrArrowExpression(arg)) {
+      count += 1;
+      if (count > 1) {
+        return true;
+      }
+    } else if (isCallOrOptionalCallExpression(arg)) {
+      for (const childArg of arg.arguments) {
+        if (isFunctionOrArrowExpression(childArg)) {
+          return true;
+        }
+      }
     }
   }
+  return false;
+}
+
+// Logic to determine if a call is a “long curried function call”.
+// See https://github.com/prettier/prettier/issues/1420.
+//
+// `connect(a, b, c)(d)`
+// In the above call expression, the second call is the parent node and the
+// first call is the current node.
+function isLongCurriedCallExpression(path) {
+  const node = path.getValue();
+  const parent = path.getParentNode();
+  return (
+    isCallOrOptionalCallExpression(node) &&
+    isCallOrOptionalCallExpression(parent) &&
+    parent.callee === node &&
+    node.arguments.length > parent.arguments.length &&
+    parent.arguments.length > 0
+  );
 }
 
 function printArgumentsList(path, options, print) {
@@ -4058,6 +4089,32 @@ function printArgumentsList(path, options, print) {
     ]);
   }
 
+  // func(
+  //   ({
+  //     a,
+
+  //     b
+  //   }) => {}
+  // );
+  function hasEmptyLineInObjectArgInArrowFunction(arg) {
+    return (
+      arg &&
+      arg.type === "ArrowFunctionExpression" &&
+      arg.params &&
+      arg.params.some(
+        param =>
+          param.type &&
+          param.type === "ObjectPattern" &&
+          param.properties &&
+          param.properties.some(
+            (property, i, properties) =>
+              i < properties.length - 1 &&
+              isNextLineEmpty(options.originalText, property, options)
+          )
+      )
+    );
+  }
+
   let anyArgEmptyLine = false;
   let hasEmptyLineFollowingFirstArg = false;
   const lastArgIndex = args.length - 1;
@@ -4077,6 +4134,8 @@ function printArgumentsList(path, options, print) {
     } else {
       parts.push(",", line);
     }
+
+    anyArgEmptyLine = hasEmptyLineInObjectArgInArrowFunction(arg);
 
     return concat(parts);
   }, "arguments");
@@ -4101,14 +4160,7 @@ function printArgumentsList(path, options, print) {
     );
   }
 
-  // We want to get
-  //    pipe(
-  //      x => x + 1,
-  //      x => x - 1
-  //    )
-  // here, but not
-  //    process.stdout.pipe(socket)
-  if (isFunctionCompositionFunction(node.callee) && args.length > 1) {
+  if (isFunctionCompositionArgs(args)) {
     return allArgsBrokenOut();
   }
 
@@ -4175,16 +4227,22 @@ function printArgumentsList(path, options, print) {
     ]);
   }
 
-  return group(
-    concat([
-      "(",
-      indent(concat([softline, concat(printedArguments)])),
-      ifBreak(maybeTrailingComma),
-      softline,
-      ")"
-    ]),
-    { shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine }
-  );
+  const contents = concat([
+    "(",
+    indent(concat([softline, concat(printedArguments)])),
+    ifBreak(maybeTrailingComma),
+    softline,
+    ")"
+  ]);
+  if (isLongCurriedCallExpression(path)) {
+    // By not wrapping the arguments in a group, the printer prioritizes
+    // breaking up these arguments rather than the args of the parent call.
+    return contents;
+  }
+
+  return group(contents, {
+    shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine
+  });
 }
 
 function printTypeAnnotation(path, options, print) {
@@ -4322,7 +4380,10 @@ function printFunctionParams(path, print, options, expandArg, printTypeParams) {
   //   b,
   //   c
   // }) {}
-  if (shouldHugParameters) {
+  const hasNotParameterDecorator = fun[paramsField].every(
+    param => !param.decorators
+  );
+  if (shouldHugParameters && hasNotParameterDecorator) {
     return concat([typeParams, "(", concat(printed), ")"]);
   }
 
@@ -4554,28 +4615,46 @@ function printExportDeclaration(path, options, print) {
         defaultSpecifiers.length !== 0 &&
         (namespaceSpecifiers.length !== 0 || specifiers.length !== 0);
 
+      const canBreak =
+        specifiers.length > 1 ||
+        defaultSpecifiers.length > 0 ||
+        (decl.specifiers && decl.specifiers.some(node => node.comments));
+
+      let printed = "";
+      if (specifiers.length !== 0) {
+        if (canBreak) {
+          printed = group(
+            concat([
+              "{",
+              indent(
+                concat([
+                  options.bracketSpacing ? line : softline,
+                  join(concat([",", line]), specifiers)
+                ])
+              ),
+              ifBreak(shouldPrintComma(options) ? "," : ""),
+              options.bracketSpacing ? line : softline,
+              "}"
+            ])
+          );
+        } else {
+          printed = concat([
+            "{",
+            options.bracketSpacing ? " " : "",
+            concat(specifiers),
+            options.bracketSpacing ? " " : "",
+            "}"
+          ]);
+        }
+      }
+
       parts.push(
         decl.exportKind === "type" ? "type " : "",
         concat(defaultSpecifiers),
         concat([isDefaultFollowed ? ", " : ""]),
         concat(namespaceSpecifiers),
         concat([isNamespaceFollowed ? ", " : ""]),
-        specifiers.length !== 0
-          ? group(
-              concat([
-                "{",
-                indent(
-                  concat([
-                    options.bracketSpacing ? line : softline,
-                    join(concat([",", line]), specifiers)
-                  ])
-                ),
-                ifBreak(shouldPrintComma(options) ? "," : ""),
-                options.bracketSpacing ? line : softline,
-                "}"
-              ])
-            )
-          : ""
+        printed
       );
     } else {
       parts.push("{}");
@@ -4648,6 +4727,7 @@ function printTypeParameters(path, options, print, paramsKey) {
   }
 
   const grandparent = path.getNode(2);
+  const greatGreatGrandParent = path.getNode(4);
 
   const isParameterInTestCall = grandparent != null && isTestCall(grandparent);
 
@@ -4660,7 +4740,13 @@ function printTypeParameters(path, options, print, paramsKey) {
           shouldHugType(n[paramsKey][0].id)) ||
         (n[paramsKey][0].type === "TSTypeReference" &&
           shouldHugType(n[paramsKey][0].typeName)) ||
-        n[paramsKey][0].type === "NullableTypeAnnotation"));
+        n[paramsKey][0].type === "NullableTypeAnnotation" ||
+        (greatGreatGrandParent &&
+          greatGreatGrandParent.type === "VariableDeclarator" &&
+          grandparent &&
+          grandparent.type === "TSTypeAnnotation" &&
+          n[paramsKey][0].type !== "TSConditionalType" &&
+          n[paramsKey][0].type !== "TSMappedType")));
 
   if (shouldInline) {
     return concat(["<", join(", ", path.map(print, paramsKey)), ">"]);
@@ -5129,6 +5215,9 @@ function printMemberChain(path, options, print) {
   // If we only have a single `.`, we shouldn't do anything fancy and just
   // render everything concatenated together.
   if (groups.length <= cutoff && !hasComment) {
+    if (isLongCurriedCallExpression(path)) {
+      return oneLine;
+    }
     return group(oneLine);
   }
 

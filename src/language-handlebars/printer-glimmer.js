@@ -174,7 +174,7 @@ function print(path, options, print) {
       return group(
         concat([
           n.escaped === false ? "{{{" : "{{",
-          printPathParams(path, print),
+          printPathParams(path, print, { group: false }),
           isConcat ? "" : softline,
           n.escaped === false ? "}}}" : "}}"
         ])
@@ -195,8 +195,9 @@ function print(path, options, print) {
       if (isText && n.value.loc.start.column === n.value.loc.end.column) {
         return concat([n.name]);
       }
-      const quote = isText ? '"' : "";
-      return concat([n.name, "=", quote, path.call(print, "value"), quote]);
+      const value = path.call(print, "value");
+      const quotedValue = isText ? printStringLiteral(value, options) : value;
+      return concat([n.name, "=", quotedValue]);
     }
     case "ConcatStatement": {
       return concat([
@@ -358,11 +359,16 @@ function getParams(path, print) {
   return parts;
 }
 
-function printPathParams(path, print) {
+function printPathParams(path, print, options) {
   let parts = [];
+  options = Object.assign({ group: true }, options || {});
 
   parts.push(printPath(path, print));
   parts = parts.concat(getParams(path, print));
+
+  if (!options.group) {
+    return indent(join(line, parts));
+  }
 
   return indent(group(join(line, parts)));
 }
