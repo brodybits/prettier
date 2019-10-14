@@ -3676,8 +3676,8 @@ function printMethod(path, options, print) {
 
   if (!kind || kind === "init" || kind === "method" || kind === "constructor") {
     if (value.async) {
-    parts.push("async ");
-  }
+      parts.push("async ");
+    }
     if (value.generator) {
       parts.push("*");
     }
@@ -3696,17 +3696,17 @@ function printMethod(path, options, print) {
   );
 
   return concat(parts);
-  }
+}
 
 function printMethodInternal(path, options, print) {
   const parts = [
     printFunctionTypeParameters(path, options, print),
-          group(
-            concat([
+    group(
+      concat([
         printFunctionParams(path, print, options),
         printReturnType(path, print, options)
-            ])
-          )
+      ])
+    )
   ];
 
   if (path.getNode().body) {
