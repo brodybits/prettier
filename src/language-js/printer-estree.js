@@ -1457,6 +1457,7 @@ function printPathNoParens(path, options, print, args) {
     case "ClassPrivateMethod":
     case "MethodDefinition":
     case "TSAbstractMethodDefinition":
+    case "TSDeclareMethod":
       if (n.decorators && n.decorators.length !== 0) {
         parts.push(printDecorators(path, options, print));
       }
@@ -1466,7 +1467,7 @@ function printPathNoParens(path, options, print, args) {
       if (n.static) {
         parts.push("static ");
       }
-      if (n.type === "TSAbstractMethodDefinition") {
+      if (n.type === "TSAbstractMethodDefinition" || n.abstract) {
         parts.push("abstract ");
       }
 
