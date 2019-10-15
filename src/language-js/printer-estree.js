@@ -2353,7 +2353,7 @@ function printPathNoParens(path, options, print, args) {
       if (n.static) {
         parts.push("static ");
       }
-      if (n.type === "TSAbstractClassProperty") {
+      if (n.type === "TSAbstractClassProperty" || n.abstract) {
         parts.push("abstract ");
       }
       if (n.readonly) {
