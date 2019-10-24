@@ -12,7 +12,7 @@ const CATEGORY_SPECIAL = "Special";
 
 /**
  * @typedef {Object} OptionInfo
- * @property {string} [since] - available since version
+ * @property {string} since - available since version
  * @property {string} category
  * @property {'int' | 'boolean' | 'choice' | 'path'} type
  * @property {OptionValueInfo} [default]
