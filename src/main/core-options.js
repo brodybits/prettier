@@ -236,6 +236,7 @@ const options = {
     cliCategory: CATEGORY_OTHER
   },
   tabWidth: {
+    since: "0.0.0",
     type: "int",
     category: CATEGORY_GLOBAL,
     default: 2,
