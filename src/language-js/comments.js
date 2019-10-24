@@ -862,6 +862,7 @@ function hasLeadingComment(node, fn = () => true) {
     return node.leadingComments.some(fn);
   }
   if (node.comments) {
+    // @ts-ignore
     return node.comments.some(comment => comment.leading && fn(comment));
   }
   return false;

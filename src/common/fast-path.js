@@ -2,6 +2,11 @@
 
 const assert = require("assert");
 
+/**
+ * @class
+ * @constructor
+ * @param {any} value - [TODO: better definition here]
+ */
 function FastPath(value) {
   assert.ok(this instanceof FastPath);
   this.stack = [value];
@@ -9,6 +14,7 @@ function FastPath(value) {
 
 // The name of the current property is always the penultimate element of
 // this.stack, and always a String.
+/** @memberof FastPath */
 FastPath.prototype.getName = function getName() {
   const s = this.stack;
   const len = s.length;
@@ -23,6 +29,7 @@ FastPath.prototype.getName = function getName() {
 
 // The value of the current property is always the final element of
 // this.stack.
+/** @memberof FastPath */
 FastPath.prototype.getValue = function getValue() {
   const s = this.stack;
   return s[s.length - 1];
@@ -43,10 +50,12 @@ function getNodeStackIndexHelper(stack, count) {
   return -1;
 }
 
+/** @memberof FastPath */
 FastPath.prototype.getNode = function getNode(count) {
   return getNodeHelper(this, ~~count);
 };
 
+/** @memberof FastPath */
 FastPath.prototype.getParentNode = function getParentNode(count) {
   return getNodeHelper(this, ~~count + 1);
 };

@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * @typedef {import("estree").TemplateLiteral} TemplateLiteral
+ * @typedef {import("../doc/doc-builders").Doc} Doc
+ */
+
 const {
   getLast,
   hasNewline,
@@ -90,6 +95,11 @@ function getLeftSide(node) {
   );
 }
 
+/**
+ * @param {Doc} path
+ * @param {Object} node - [TODO better definition needed]
+ * @returns string[]
+ */
 function getLeftSidePathName(path, node) {
   if (node.expressions) {
     return ["expressions", 0];
@@ -115,6 +125,7 @@ function getLeftSidePathName(path, node) {
   if (node.expression) {
     return ["expression"];
   }
+  // @ts-ignore [TODO]
   throw new Error("Unexpected node has no left side", node);
 }
 
@@ -406,7 +417,10 @@ function isNgForOf(node, index, parentNode) {
   );
 }
 
-/** @param node {import("estree").TemplateLiteral} */
+/**
+ * @param {TemplateLiteral} node
+ * @returns boolean
+ */
 function isSimpleTemplateLiteral(node) {
   if (node.expressions.length === 0) {
     return false;
@@ -414,6 +428,7 @@ function isSimpleTemplateLiteral(node) {
 
   return node.expressions.every(expr => {
     // Disallow comments since printDocToString can't print them here
+    // @ts-ignore [TODO]
     if (expr.comments) {
       return false;
     }
@@ -426,22 +441,29 @@ function isSimpleTemplateLiteral(node) {
     // Allow `a.b.c`, `a.b[c]`, and `this.x.y`
     if (
       (expr.type === "MemberExpression" ||
+        // @ts-ignore [TODO]
         expr.type === "OptionalMemberExpression") &&
+      // @ts-ignore [TODO]
       (expr.property.type === "Identifier" || expr.property.type === "Literal")
     ) {
       let ancestor = expr;
       while (
         ancestor.type === "MemberExpression" ||
+        // @ts-ignore [TODO]
         ancestor.type === "OptionalMemberExpression"
       ) {
+        // @ts-ignore [TODO]
         ancestor = ancestor.object;
+        // @ts-ignore [TODO]
         if (ancestor.comments) {
           return false;
         }
       }
 
       if (
+        // @ts-ignore [TODO]
         ancestor.type === "Identifier" ||
+        // @ts-ignore [TODO]
         ancestor.type === "ThisExpression"
       ) {
         return true;

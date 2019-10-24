@@ -6,6 +6,7 @@ const options = require("./options");
 const createLanguage = require("../utils/create-language");
 
 const languages = [
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/JavaScript"), {
     override: {
       since: "0.0.0",
@@ -16,6 +17,7 @@ const languages = [
       interpreters: ["nodejs"]
     }
   }),
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/JavaScript"), {
     override: {
       name: "Flow",
@@ -27,6 +29,7 @@ const languages = [
       extensions: [".js.flow"]
     }
   }),
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/JSX"), {
     override: {
       since: "0.0.0",
@@ -34,6 +37,7 @@ const languages = [
       vscodeLanguageIds: ["javascriptreact"]
     }
   }),
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/TypeScript"), {
     override: {
       since: "1.4.0",
@@ -41,6 +45,7 @@ const languages = [
       vscodeLanguageIds: ["typescript"]
     }
   }),
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/TSX"), {
     override: {
       since: "1.4.0",
@@ -48,6 +53,7 @@ const languages = [
       vscodeLanguageIds: ["typescriptreact"]
     }
   }),
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/JSON"), {
     override: {
       name: "JSON.stringify",
@@ -58,6 +64,7 @@ const languages = [
       filenames: ["package.json", "package-lock.json", "composer.json"]
     }
   }),
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/JSON"), {
     override: {
       since: "1.5.0",
@@ -68,6 +75,7 @@ const languages = [
       filenames: [".prettierrc"]
     }
   }),
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/JSON with Comments"), {
     override: {
       since: "1.5.0",
@@ -78,6 +86,7 @@ const languages = [
       filenames: [".eslintrc"]
     }
   }),
+  // @ts-ignore
   createLanguage(require("linguist-languages/data/JSON5"), {
     override: {
       since: "1.13.0",
