@@ -104,6 +104,8 @@ function findPluginsInNodeModules(nodeModulesDir) {
   );
   return pluginPackageJsonPaths
     .map(packageJsonFile => path.dirname(packageJsonFile.slice(2)))
+    // sort function based on node-glob.alphasorti ref:
+    // https://github.com/isaacs/node-glob/blob/v7.1.5/common.js#L20-L22
     .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 }
 
