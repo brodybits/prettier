@@ -6,13 +6,19 @@
     "target": "esnext",
     "module": "commonjs",
     "resolveJsonModule": true,
-    "strict": false
+
+    /* Strict Type-Checking Options */
+    // "strict": true
+    "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
+    // "strictNullChecks": true,              /* Enable strict null checks. */
+    "strictFunctionTypes": true,           /* Enable strict checking of function types. */
+    "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
+    // "strictPropertyInitialization": true,  /* Enable strict checking of property initialization in classes. */
+    "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
   },
   "exclude": [
-    // JSDoc fix proposed in PR #6709:
-    "src/doc/doc-printer.js",
-    "src/doc/index.js",
-    // TODO other JavaScript source directory trees to be updated:
+    // TODO JavaScript source directory trees to be updated:
+    "src/doc",
     "src/cli",
     "src/common",
     "src/config",
