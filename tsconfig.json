@@ -9,6 +9,29 @@
     "strict": false
   },
   "exclude": [
+    // JSDoc fix proposed in PR #6709:
+    "src/doc/doc-printer.js",
+    "src/doc/index.js",
+    // TODO other JavaScript source directory trees to be updated:
+    "src/cli",
+    "src/common",
+    "src/config",
+    "src/index.js",
+    "src/language-css",
+    "src/language-graphql",
+    "src/language-handlebars",
+    "src/language-html",
+    "src/language-js",
+    "src/language-markdown",
+    "src/language-yaml",
+    "src/main",
+    "src/utils",
+    // TODO remove top-level JavaScript source from this list once all
+    // other JavaScript source directory trees are fixed:
+    "src/index.js",
+    "src/standalone.js",
+    "index.js",
+    "standalone.js",
     "bin/",
     "dist/",
     "docs/",
