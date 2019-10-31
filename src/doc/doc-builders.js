@@ -1,6 +1,8 @@
 "use strict";
 
 /**
+ * TBD properly tagged union for Doc object type is needed here.
+ *
  * @typedef {Object} DocObject
  * @property {string} type
  * @property {boolean} [hard]
