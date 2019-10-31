@@ -9,8 +9,12 @@
     "strict": true
   },
   "exclude": [
+    // TODO some JavaScript source files to be updated:
+    "src/doc/doc-debug.js",
+    "src/doc/doc-printer.js",
+    "src/doc/doc-utils.js",
+    "src/doc/index.js",
     // TODO JavaScript source directory trees to be updated:
-    "src/doc",
     "src/cli",
     "src/common",
     "src/config",
