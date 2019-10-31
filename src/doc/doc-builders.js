@@ -81,12 +81,9 @@ function group(contents, opts) {
 
   return {
     type: "group",
-    // @ts-ignore - TBD ???
     id: opts.id,
     contents: contents,
-    // @ts-ignore - TBD ???
     break: !!opts.shouldBreak,
-    // @ts-ignore - TBD ???
     expandedStates: opts.expandedStates
   };
 }
