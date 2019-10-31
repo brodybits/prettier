@@ -16,6 +16,7 @@
     // "jest.config.js",
     // FUTURE TBD add & fix more source files for strict type checking
     "src/common/common-options.js",
+    "src/doc/doc-builders.js",
     "src/common/errors.js"
   ]
 }
