@@ -25,7 +25,7 @@
     "src/main/multiparser.js",
     "src/main/options.js",
     "src/main/options-normalizer.js",
-    // TODO other JavaScript source directory trees to be updated:
+    // TODO src/language-* source directory trees to be updated:
     "src/language-css",
     "src/language-graphql",
     "src/language-handlebars",
