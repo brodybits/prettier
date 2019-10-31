@@ -12,8 +12,11 @@
     "strict": true
   },
   "files": [
-    // FUTURE TBD add more source files for strict type checking
+    // FUTURE TODO add & fix more source files for strict type checking
+    "src/common/common-options.js",
+    "src/common/errors.js",
     "src/doc/doc-builders.js",
+    // FUTURE TODO add & fix sources in src/language-* directory trees
     "jest.config.js"
   ]
 }
