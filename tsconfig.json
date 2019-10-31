@@ -22,7 +22,6 @@
     "src/language-markdown",
     "src/language-yaml",
     "src/main",
-    "src/utils",
     // TODO remove top-level JavaScript source from this list once all
     // other JavaScript source directory trees are fixed:
     "src/index.js",
