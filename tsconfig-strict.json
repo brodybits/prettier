@@ -13,6 +13,7 @@
   },
   "files": [
     // FUTURE TBD add more source files for strict type checking
+    "src/doc/doc-builders.js",
     "jest.config.js"
   ]
 }
