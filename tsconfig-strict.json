@@ -17,8 +17,7 @@
     "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
   },
   "files": [
-    // [TBD] resolve strict JSDoc type issues in `jest.config.js`
-    // "jest.config.js",
+    "jest.config.js",
     // FUTURE TBD add & fix more source files for strict type checking
     "src/common/common-options.js",
     "src/doc/doc-builders.js",
