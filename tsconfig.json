@@ -9,10 +9,23 @@
     "strict": false
   },
   "exclude": [
+    // XXX TBD XXX
+    "src/common/get-file-info.js",
+    "src/common/internal-plugins.js",
+    "src/common/load-plugins.js",
+    "src/cli/index.js",
+    "src/cli/util.js",
+    // XXX TODO FIX XXX:
+    "src/common/create-ignorer.js",
+    "src/common/parser-create-error.js",
+    "src/config/resolve-config.js",
+    // XXX TODO FIX XXX in src/main/options-normalizer.js:
+    "src/main/ast-to-doc.js",
+    "src/main/core.js",
+    "src/main/multiparser.js",
+    "src/main/options.js",
+    "src/main/options-normalizer.js",
     // TODO other JavaScript source directory trees to be updated:
-    "src/cli",
-    "src/common",
-    "src/config",
     "src/index.js",
     "src/language-css",
     "src/language-graphql",
@@ -21,7 +34,6 @@
     "src/language-js",
     "src/language-markdown",
     "src/language-yaml",
-    "src/main",
     // TODO remove top-level JavaScript source from this list once all
     // other JavaScript source directory trees are fixed:
     "src/index.js",
