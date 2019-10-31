@@ -26,7 +26,6 @@
     "src/main/options.js",
     "src/main/options-normalizer.js",
     // TODO other JavaScript source directory trees to be updated:
-    "src/index.js",
     "src/language-css",
     "src/language-graphql",
     "src/language-handlebars",
