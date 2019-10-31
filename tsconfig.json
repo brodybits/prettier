@@ -6,13 +6,11 @@
     "target": "esnext",
     "module": "commonjs",
     "resolveJsonModule": true,
-    "strict": false
+    "strict": true
   },
   "exclude": [
-    // JSDoc fix proposed in PR #6709:
-    "src/doc/doc-printer.js",
-    "src/doc/index.js",
-    // TODO other JavaScript source directory trees to be updated:
+    // TODO JavaScript source directory trees to be updated:
+    "src/doc",
     "src/cli",
     "src/common",
     "src/config",
