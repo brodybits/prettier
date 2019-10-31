@@ -5,8 +5,6 @@ steps:
     displayName: "Check dependencies"
   - script: yarn check-types
     displayName: "Check JSDoc types"
-  - script: yarn check-types-strict
-    displayName: "Check strict JSDoc types"
   - script: yarn lint
     displayName: "Lint code"
   - script: yarn lint-docs
