@@ -7,10 +7,6 @@
  * @property {boolean} [literal]
  *
  * @typedef {string | DocObject} Doc
- *
- * @typedef {Object} GroupOpts
- * @property {boolean} [shouldBreak]
- * @property {Doc[]} [expandedStates]
  */
 
 /**
@@ -71,7 +67,7 @@ function align(n, contents) {
 
 /**
  * @param {Doc} contents
- * @param {GroupOpts} [opts]
+ * @param {Object} [opts] - TBD ???
  * @returns Doc
  */
 function group(contents, opts) {
@@ -86,7 +82,9 @@ function group(contents, opts) {
     // @ts-ignore - TBD ???
     id: opts.id,
     contents: contents,
+    // @ts-ignore - TBD ???
     break: !!opts.shouldBreak,
+    // @ts-ignore - TBD ???
     expandedStates: opts.expandedStates
   };
 }
