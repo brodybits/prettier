@@ -9,7 +9,8 @@ const requiresPrettierInternals = [
 ];
 
 const semver = require("semver");
-const isOldNode = semver.parse(process.version).major <= 4;
+const version = semver.parse(process.version);
+const isOldNode = version && version.major <= 4;
 
 module.exports = {
   setupFiles: ["<rootDir>/tests_config/run_spec.js"],
