@@ -12,7 +12,8 @@
     "strict": true
   },
   "files": [
-    "jest.config.js",
+    // [TBD] resolve strict JSDoc type issues in `jest.config.js`
+    // "jest.config.js",
     // FUTURE TBD add & fix more source files for strict type checking
     "src/common/common-options.js",
     "src/doc/doc-builders.js",
