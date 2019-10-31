@@ -3,11 +3,13 @@ env:
   es6: true
   node: true
 extends:
+  - plugin:jsdoc/recommended
   - eslint:recommended
   - plugin:react/recommended
   - plugin:prettier/recommended
 plugins:
   - import
+  - jsdoc
 rules:
   curly: error
   import/no-extraneous-dependencies:
@@ -32,3 +34,6 @@ rules:
     - error
     - never
     - exceptRange: true
+  jsdoc/require-jsdoc: off
+  jsdoc/require-param-description: off
+  jsdoc/require-returns-description: off
