@@ -1,0 +1,21 @@
+// FUTURE TBD remove this config in favor of
+// strict type checking for all sources in
+// tsconfig.json
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "strict": true
+  },
+  "files": [
+    // [TBD] resolve strict JSDoc type issues in `jest.config.js`
+    // "jest.config.js",
+    // FUTURE TBD add & fix more source files for strict type checking
+    "src/common/common-options.js",
+    "src/common/errors.js"
+  ]
+}
