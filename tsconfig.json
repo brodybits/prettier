@@ -9,9 +9,6 @@
     "strict": false
   },
   "exclude": [
-    // JSDoc fix proposed in PR #6709:
-    "src/doc/doc-printer.js",
-    "src/doc/index.js",
     // TODO other JavaScript source directory trees to be updated:
     "src/cli",
     "src/common",
