@@ -4,7 +4,8 @@ const { getStringWidth } = require("../common/util");
 const { convertEndOfLineToChars } = require("../common/end-of-line");
 const { concat, fill, cursor } = require("./doc-builders");
 
-/** @type {{[groupId: string]: number}} */
+/** @typedef {typeof MODE_BREAK | typeof MODE_FLAT} GroupMode */
+/** @type {Record<symbol, GroupMode>} */
 let groupModeMap;
 
 const MODE_BREAK = 1;
