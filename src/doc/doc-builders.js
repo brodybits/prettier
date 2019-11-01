@@ -27,7 +27,7 @@ function assertDoc(val) {
 
 /**
  * @param {Doc[]} parts
- * @returns Doc
+ * @returns {Doc}
  */
 function concat(parts) {
   if (process.env.NODE_ENV !== "production") {
@@ -45,7 +45,7 @@ function concat(parts) {
 
 /**
  * @param {Doc} contents
- * @returns Doc
+ * @returns {Doc}
  */
 function indent(contents) {
   if (process.env.NODE_ENV !== "production") {
@@ -58,6 +58,7 @@ function indent(contents) {
 /**
  * @param {number} n
  * @param {Doc} contents
+ * @returns {Doc}
  */
 function align(n, contents) {
   if (process.env.NODE_ENV !== "production") {
@@ -70,7 +71,7 @@ function align(n, contents) {
 /**
  * @param {Doc} contents
  * @param {object} [opts] - TBD ???
- * @returns Doc
+ * @returns {Doc}
  */
 function group(contents, opts) {
   opts = opts || {};
@@ -90,7 +91,7 @@ function group(contents, opts) {
 
 /**
  * @param {Doc} contents
- * @returns Doc
+ * @returns {Doc}
  */
 function dedentToRoot(contents) {
   return align(-Infinity, contents);
@@ -98,7 +99,7 @@ function dedentToRoot(contents) {
 
 /**
  * @param {Doc} contents
- * @returns Doc
+ * @returns {Doc}
  */
 function markAsRoot(contents) {
   // @ts-ignore - TBD ???:
@@ -107,7 +108,7 @@ function markAsRoot(contents) {
 
 /**
  * @param {Doc} contents
- * @returns Doc
+ * @returns {Doc}
  */
 function dedent(contents) {
   return align(-1, contents);
@@ -116,7 +117,7 @@ function dedent(contents) {
 /**
  * @param {Doc[]} states
  * @param {object} [opts] - TBD ???
- * @returns Doc
+ * @returns {Doc}
  */
 function conditionalGroup(states, opts) {
   return group(
@@ -127,7 +128,7 @@ function conditionalGroup(states, opts) {
 
 /**
  * @param {Doc[]} parts
- * @returns Doc
+ * @returns {Doc}
  */
 function fill(parts) {
   if (process.env.NODE_ENV !== "production") {
@@ -141,7 +142,7 @@ function fill(parts) {
  * @param {Doc} [breakContents]
  * @param {Doc} [flatContents]
  * @param {object} [opts] - TBD ???
- * @returns Doc
+ * @returns {Doc}
  */
 function ifBreak(breakContents, flatContents, opts) {
   opts = opts || {};
@@ -165,7 +166,7 @@ function ifBreak(breakContents, flatContents, opts) {
 
 /**
  * @param {Doc} contents
- * @returns Doc
+ * @returns {Doc}
  */
 function lineSuffix(contents) {
   if (process.env.NODE_ENV !== "production") {
@@ -189,6 +190,7 @@ const cursor = { type: "cursor", placeholder: Symbol("cursor") };
 /**
  * @param {Doc} sep
  * @param {Doc[]} arr
+ * @returns {Doc}
  */
 function join(sep, arr) {
   const res = [];
