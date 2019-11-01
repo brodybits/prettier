@@ -3,7 +3,7 @@
 /**
  * TBD properly tagged union for Doc object type is needed here.
  *
- * @typedef {Object} DocObject
+ * @typedef {object} DocObject
  * @property {string} type
  * @property {boolean} [hard]
  * @property {boolean} [literal]
@@ -69,7 +69,7 @@ function align(n, contents) {
 
 /**
  * @param {Doc} contents
- * @param {Object} [opts] - TBD ???
+ * @param {object} [opts] - TBD ???
  * @returns Doc
  */
 function group(contents, opts) {
@@ -115,7 +115,7 @@ function dedent(contents) {
 
 /**
  * @param {Doc[]} states
- * @param {Object} [opts] - TBD ???
+ * @param {object} [opts] - TBD ???
  * @returns Doc
  */
 function conditionalGroup(states, opts) {
@@ -140,7 +140,7 @@ function fill(parts) {
 /**
  * @param {Doc} [breakContents]
  * @param {Doc} [flatContents]
- * @param {Object} [opts] - TBD ???
+ * @param {object} [opts] - TBD ???
  * @returns Doc
  */
 function ifBreak(breakContents, flatContents, opts) {
