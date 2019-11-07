@@ -11,7 +11,7 @@ module.exports = function(config) {
     reporters: ["html", "clear-text", "progress"],
     testRunner: "command",
     commandRunner: {
-      command: "npx jest --no-cache tests/ tests_integration"
+      command: "npx jest --no-cache"
     },
     transpilers: [],
     coverageAnalysis: "off"
