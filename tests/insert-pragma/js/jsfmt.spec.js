@@ -1,1 +1,1 @@
-run_spec(__dirname, ["flow", "babel", "typescript"], { insertPragma: true });
+run_spec(__dirname, ["flow", "babel", "babel-ts"], { insertPragma: true });

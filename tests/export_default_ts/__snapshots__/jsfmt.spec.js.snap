@@ -2,7 +2,7 @@
 
 exports[`function_as.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

@@ -2,7 +2,7 @@
 
 exports[`import-type.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -44,7 +44,7 @@ type X = A<import("B").C<any>>;
 
 exports[`import-type.ts 2`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 singleQuote: true
                                                                                 | printWidth

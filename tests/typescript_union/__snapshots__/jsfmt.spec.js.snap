@@ -2,7 +2,7 @@
 
 exports[`inlining.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -96,7 +96,7 @@ type T8 = number | ((arg: any) => void);
 
 exports[`union-parens.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -327,7 +327,7 @@ type Ctor = (new () => X) | Y;
 
 exports[`with-type-params.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -357,7 +357,7 @@ type GetChatsSagaEffects =
 
 exports[`within-tuple.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

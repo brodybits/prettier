@@ -2,7 +2,7 @@
 
 exports[`unionTypeCallSignatures.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -184,7 +184,7 @@ strOrNum = unionWithRestParameter4("hello", "world");
 
 exports[`unionTypeCallSignatures3.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -225,7 +225,7 @@ fUnion(""); // All constituents can be called by passing a single string.
 
 exports[`unionTypeCallSignatures4.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -287,7 +287,7 @@ f12345("a", "b", "c"); // error
 
 exports[`unionTypeConstructSignatures.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -461,7 +461,7 @@ strOrNum = new unionWithRestParameter3(); // error no call signature
 
 exports[`unionTypeEquivalence.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -511,7 +511,7 @@ var z1: string | typeof BC;
 
 exports[`unionTypeFromArrayLiteral.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -577,7 +577,7 @@ var arr9 = [e, f]; // (E|F)[]
 
 exports[`unionTypeIndexSignature.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -641,7 +641,7 @@ anyVar = unionOfTypesWithAndWithoutStringSignature1[10]; // any
 
 exports[`unionTypePropertyAccessibility.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

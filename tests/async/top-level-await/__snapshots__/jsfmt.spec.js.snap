@@ -2,7 +2,7 @@
 
 exports[`example.js 1`] = `
 ====================================options=====================================
-parsers: ["babel", "typescript"]
+parsers: ["babel", "babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

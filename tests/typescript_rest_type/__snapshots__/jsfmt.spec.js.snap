@@ -2,7 +2,7 @@
 
 exports[`complex.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -16,7 +16,7 @@ type TupleWithRest = [number, ...(1 extends 2 ? string[] : number[])];
 
 exports[`simple.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

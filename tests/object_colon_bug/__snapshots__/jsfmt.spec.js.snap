@@ -2,7 +2,7 @@
 
 exports[`bug.js 1`] = `
 ====================================options=====================================
-parsers: ["flow", "typescript"]
+parsers: ["flow", "babel-ts"]
 printWidth: 35
                                    | printWidth
 =====================================input======================================

@@ -2,7 +2,7 @@
 
 exports[`no-semi.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -34,7 +34,7 @@ class A {
 
 exports[`no-semi.ts 2`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 semi: false
                                                                                 | printWidth
@@ -67,7 +67,7 @@ class A {
 
 exports[`non-null.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -85,7 +85,7 @@ const el = ReactDOM.findDOMNode(ref);
 
 exports[`non-null.ts 2`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 semi: false
                                                                                 | printWidth

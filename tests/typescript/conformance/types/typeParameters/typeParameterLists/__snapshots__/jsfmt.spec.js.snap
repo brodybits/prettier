@@ -2,7 +2,7 @@
 
 exports[`innerTypeParameterShadowingOuterOne.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -70,7 +70,7 @@ function f2<T extends Date, U extends Date>() {
 
 exports[`innerTypeParameterShadowingOuterOne2.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -156,7 +156,7 @@ class C2<T extends Date, U extends Date> {
 
 exports[`staticMembersUsingClassTypeParameter.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -198,7 +198,7 @@ class C3<T extends Date> {
 
 exports[`typeParametersAvailableInNestedScope2.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

@@ -2,7 +2,7 @@
 
 exports[`semi.js 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -28,7 +28,7 @@ function pickCard(x: number): { suit: string; card: number };
 
 exports[`type_literal_optional_method.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

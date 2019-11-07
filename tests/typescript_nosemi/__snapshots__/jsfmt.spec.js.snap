@@ -2,7 +2,7 @@
 
 exports[`index-signature.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 semi: false
                                                                                 | printWidth
@@ -23,7 +23,7 @@ class LocalStorage implements Storage {
 
 exports[`interface.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 semi: false
                                                                                 | printWidth
@@ -57,7 +57,7 @@ interface InlineMultiple {
 
 exports[`type.js 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 semi: false
                                                                                 | printWidth

@@ -2,7 +2,7 @@
 
 exports[`shebang.js 1`] = `
 ====================================options=====================================
-parsers: ["flow", "typescript", "babel"]
+parsers: ["flow", "babel-ts", "babel"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -18,7 +18,7 @@ function a() {}
 
 exports[`shebang-newline.js 1`] = `
 ====================================options=====================================
-parsers: ["flow", "typescript", "babel"]
+parsers: ["flow", "babel-ts", "babel"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

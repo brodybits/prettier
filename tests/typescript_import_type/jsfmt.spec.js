@@ -1,2 +1,2 @@
-run_spec(__dirname, ["typescript"]);
-run_spec(__dirname, ["typescript"], { singleQuote: true });
+run_spec(__dirname, ["babel-ts"]);
+run_spec(__dirname, ["babel-ts"], { singleQuote: true });

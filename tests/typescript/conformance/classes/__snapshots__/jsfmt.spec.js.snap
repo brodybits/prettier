@@ -2,7 +2,7 @@
 
 exports[`abstract.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -20,7 +20,7 @@ abstract class AbstractSocket {
 
 exports[`classExpression.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -49,7 +49,7 @@ var z = class C4 {};
 
 exports[`mixinAccessModifiers.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -277,7 +277,7 @@ class C6 extends Mix(Public, Public2) {
 
 exports[`mixinClassesAnnotated.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -412,7 +412,7 @@ class Thing3 extends Thing2 {
 
 exports[`mixinClassesAnonymous.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -553,7 +553,7 @@ const Timestamped = <CT extends Constructor<object>>(Base: CT) => {
 
 exports[`mixinClassesMembers.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -765,7 +765,7 @@ class C3 extends Mixed3 {
 
 exports[`nestedClassDeclaration.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

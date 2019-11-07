@@ -2,7 +2,7 @@
 
 exports[`types.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 quoteProps: "as-needed"
                                                                                 | printWidth
@@ -33,7 +33,7 @@ type U = {
 
 exports[`types.ts 2`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 quoteProps: "preserve"
                                                                                 | printWidth
@@ -64,7 +64,7 @@ type U = {
 
 exports[`types.ts 3`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 quoteProps: "consistent"
                                                                                 | printWidth

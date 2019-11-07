@@ -2,7 +2,7 @@
 
 exports[`contextualTypeWithTuple.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -64,7 +64,7 @@ numStrTuple = unionTuple3;
 
 exports[`indexerWithTuple.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -140,7 +140,7 @@ var eleUnion26 = unionTuple2["1"]; // string | number
 
 exports[`tupleElementTypes1.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -154,7 +154,7 @@ var [a, b]: [number, any] = [undefined, undefined];
 
 exports[`tupleElementTypes2.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -168,7 +168,7 @@ function f([a, b]: [number, any]) {}
 
 exports[`tupleElementTypes3.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -182,7 +182,7 @@ var [a, b] = [0, undefined];
 
 exports[`tupleElementTypes4.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -196,7 +196,7 @@ function f([a, b] = [0, undefined]) {}
 
 exports[`typeInferenceWithTupleType.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -255,7 +255,7 @@ var zipResultEleEle = zipResult[0][0]; // string
 
 exports[`wideningTuples1.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -277,7 +277,7 @@ y = [""];
 
 exports[`wideningTuples2.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -301,7 +301,7 @@ var foo: () => [any] = function bar() {
 
 exports[`wideningTuples3.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -321,7 +321,7 @@ var b = (a = [undefined, null]);
 
 exports[`wideningTuples4.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -341,7 +341,7 @@ b = ["", ""];
 
 exports[`wideningTuples5.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -357,7 +357,7 @@ var [a, b] = [undefined, null];
 
 exports[`wideningTuples6.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -375,7 +375,7 @@ b = "";
 
 exports[`wideningTuples7.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

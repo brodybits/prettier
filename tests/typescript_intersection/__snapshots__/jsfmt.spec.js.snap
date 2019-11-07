@@ -2,7 +2,7 @@
 
 exports[`intersection-parens.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -100,7 +100,7 @@ type D6 /*0*/ = /*1*/ a & b;
 
 exports[`intersection-parens.ts 2`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 semi: false
                                                                                 | printWidth

@@ -1,1 +1,1 @@
-run_spec(__dirname, ["flow", "typescript"], { printWidth: 35 });
+run_spec(__dirname, ["flow", "babel-ts"], { printWidth: 35 });

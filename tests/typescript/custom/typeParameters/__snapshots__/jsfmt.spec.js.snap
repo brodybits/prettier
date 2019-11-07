@@ -2,7 +2,7 @@
 
 exports[`callAndConstructSignatureLong.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -40,7 +40,7 @@ interface Interface {
 
 exports[`functionTypeLong.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -70,7 +70,7 @@ type AwkwardlyLongFunctionTypeDefinition = <
 
 exports[`interfaceParamsLong.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -92,7 +92,7 @@ interface ReallyReallyLongName<
 
 exports[`typeParametersLong.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -111,7 +111,7 @@ type ReallyReallyReallyLongName<
 
 exports[`variables.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

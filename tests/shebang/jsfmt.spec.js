@@ -1,1 +1,1 @@
-run_spec(__dirname, ["flow", "typescript", "babel"]);
+run_spec(__dirname, ["flow", "babel-ts", "babel"]);

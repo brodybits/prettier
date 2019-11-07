@@ -2,7 +2,7 @@
 
 exports[`circularImportAlias.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -50,7 +50,7 @@ var c = new B.a.C();
 
 exports[`exportImportAlias.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -195,7 +195,7 @@ var p: M.D.Point;
 
 exports[`exportInterface.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -208,7 +208,7 @@ export interface I {}
 
 exports[`importAliasIdentifiers.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -312,7 +312,7 @@ var p: { x: number; y: number };
 
 exports[`invalidImportAliasIdentifiers.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -371,7 +371,7 @@ import i = I;
 
 exports[`shadowedInternalModule.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

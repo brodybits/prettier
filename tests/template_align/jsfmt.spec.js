@@ -1,2 +1,2 @@
-run_spec(__dirname, ["flow", "typescript"]);
-run_spec(__dirname, ["flow", "typescript"], { useTabs: true, tabWidth: 8 });
+run_spec(__dirname, ["flow", "babel-ts"]);
+run_spec(__dirname, ["flow", "babel-ts"], { useTabs: true, tabWidth: 8 });

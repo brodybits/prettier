@@ -2,7 +2,7 @@
 
 exports[`test.component.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -50,7 +50,7 @@ class TestComponent {}
 
 exports[`test.component.ts 2`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
 trailingComma: "es5"
                                                                                 | printWidth

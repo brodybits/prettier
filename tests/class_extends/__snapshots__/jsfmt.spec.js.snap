@@ -2,7 +2,7 @@
 
 exports[`extends.js 1`] = `
 ====================================options=====================================
-parsers: ["flow", "typescript"]
+parsers: ["flow", "babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
