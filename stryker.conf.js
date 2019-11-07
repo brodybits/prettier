@@ -24,7 +24,7 @@ module.exports = function(config) {
     commandRunner: {
       command: "npx jest --no-cache"
     },
-    timeoutMS: 300000,
+    timeoutMS: 120000,
     transpilers: [],
     coverageAnalysis: "off"
   });
