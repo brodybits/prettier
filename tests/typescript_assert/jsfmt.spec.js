@@ -1,1 +1,4 @@
-run_spec(__dirname, ["typescript"]);
+run_spec(__dirname, ["typescript"], {
+  // syntax error:
+  disableBabelTS: true
+});
