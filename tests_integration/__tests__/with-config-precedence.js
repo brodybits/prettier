@@ -114,7 +114,7 @@ describe("CLI validate options with --config-precedence prefer-file", () => {
   });
 });
 
-describe("CLI --stdin-filepath works with --config-precedence prefer-file", () => {
+xdescribe("CLI --stdin-filepath works with --config-precedence prefer-file", () => {
   runPrettier(
     "cli/config/",
     [
@@ -130,7 +130,7 @@ describe("CLI --stdin-filepath works with --config-precedence prefer-file", () =
   });
 });
 
-describe("CLI --stdin-filepath works with --config-precedence file-override", () => {
+xdescribe("CLI --stdin-filepath works with --config-precedence file-override", () => {
   runPrettier(
     "cli/config/",
     [
@@ -146,7 +146,7 @@ describe("CLI --stdin-filepath works with --config-precedence file-override", ()
   });
 });
 
-describe("CLI --stdin-filepath works with --config-precedence cli-override", () => {
+xdescribe("CLI --stdin-filepath works with --config-precedence cli-override", () => {
   runPrettier(
     "cli/config/",
     [

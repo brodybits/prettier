@@ -178,24 +178,6 @@ function rcYaml() {
 
 exports[`resolves configuration from external files (write) 1`] = `Array []`;
 
-exports[`resolves configuration from external files and overrides by extname (stderr) 1`] = `""`;
-
-exports[`resolves configuration from external files and overrides by extname (stdout) 1`] = `
-"function noConfigTs() {
-  console.log(
-    \\"no-config/file.ts should have semicolons because it has a .ts extension\\"
-  );
-}
-function packageTs() {
-     console.log(
-          \\"package/file.ts should have tab width 5 because it has .ts extension\\"
-     );
-}
-"
-`;
-
-exports[`resolves configuration from external files and overrides by extname (write) 1`] = `Array []`;
-
 exports[`resolves external configuration from package.json (stderr) 1`] = `""`;
 
 exports[`resolves external configuration from package.json (stdout) 1`] = `
