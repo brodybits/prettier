@@ -119,8 +119,11 @@ function createParse(parseMethod, extraPlugins) {
 }
 
 const parse = createParse("parse", ["flow"]);
+
 const parseFlow = createParse("parse", [["flow", { all: true }]]);
+
 const parseTypeScript = createParse("parse", ["typescript"]);
+
 const parseExpression = createParse("parseExpression");
 
 function tryCombinations(fn, combinations) {
