@@ -9,7 +9,10 @@ module.exports = function(config) {
     ],
     packageManager: "yarn",
     reporters: ["html", "clear-text", "progress"],
-    testRunner: "jest",
+    testRunner: "command",
+    commandRunner: {
+      command: "npx jest --no-cache tests/ tests_integration"
+    },
     transpilers: [],
     coverageAnalysis: "off"
   });
