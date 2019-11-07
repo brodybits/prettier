@@ -2,7 +2,7 @@
 
 exports[`abstract_class.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -30,7 +30,7 @@ abstract class AbstractRule {
 
 exports[`after_jsx_generic.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -92,7 +92,7 @@ let comp = (
 
 exports[`jsx.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -114,7 +114,7 @@ var example2 = <div>/*test*/</div>;
 
 exports[`location.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -168,8 +168,8 @@ function x({
 export interface ApplicationEventData {
   registerBroadcastReceiver(
     onReceiveCallback: (
-      context: any /* android.content.Context */,
-      intent: any /* android.content.Intent */
+      context: any,
+      /* android.content.Context */ intent: any /* android.content.Intent */
     ) => void
   ): void;
 }
@@ -201,7 +201,7 @@ export type WrappedFormUtils = {
 
 exports[`mapped_types.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -261,7 +261,7 @@ type C = {
 };
 
 type D = {
-  [d /* commentD */ in D]: string;
+  [d in /* commentD */ D]: string;
 };
 
 type E = {
@@ -280,7 +280,7 @@ type H = { [/* commentH */ h in H]: string };
 
 type I = { [/* commentI */ i in I]: string };
 
-type J = { [j /* commentJ */ in J]: string };
+type J = { [j in /* commentJ */ J]: string };
 
 type K = { [k in /* commentK */ K]: string };
 
@@ -293,7 +293,7 @@ type M = { [m in M /* commentG */]: string };
 
 exports[`methods.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -396,7 +396,7 @@ export class Point {
 
 exports[`type-parameters.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -410,7 +410,7 @@ functionName<A /* A comment */>();
 
 exports[`types.ts 1`] = `
 ====================================options=====================================
-parsers: ["typescript"]
+parsers: ["babel-ts"]
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
