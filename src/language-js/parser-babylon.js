@@ -119,7 +119,7 @@ function createParse(parseMethod, extraPlugins) {
 }
 
 const parse = createParse("parse", ["flow"]);
-const parseFlow = createParse("parse", [["flow", { all: true }]]);
+const parseFlow = createParse("parse", [["flow", { all: true, enums: true }]]);
 const parseTypeScript = createParse("parse", ["typescript"]);
 const parseExpression = createParse("parseExpression");
 
