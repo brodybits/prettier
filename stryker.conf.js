@@ -3,7 +3,7 @@ module.exports = function(config) {
     mutator: "javascript",
     packageManager: "yarn",
     reporters: ["html", "clear-text", "progress"],
-    testRunner: "jest",
+    testRunner: "command",
     transpilers: [],
     coverageAnalysis: "off"
   });
