@@ -1411,6 +1411,14 @@ function printPathNoParens(path, options, print, args) {
           shouldHugArguments(parent) &&
           !n.decorators &&
           parent.params[0] === n) ||
+        (n.type === "ObjectPattern" &&
+          // maybe "hug" destructured object
+          parent &&
+          parent.type === "VariableDeclarator" &&
+          !n.properties.some(
+            property =>
+              property.value && property.value.type === "ObjectPattern"
+          )) ||
         (shouldHugType(n) &&
           parentParentParent &&
           shouldHugArguments(parentParentParent) &&

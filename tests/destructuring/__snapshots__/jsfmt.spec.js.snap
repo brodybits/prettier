@@ -126,9 +126,12 @@ class A {
   }
 }
 
-const { a, b, c, d } = veryVeryVeryVeryVeryLongCall(
-  aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa
-);
+const {
+  a,
+  b,
+  c,
+  d
+} = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa);
 
 const {
   a,
@@ -140,7 +143,10 @@ const [a, b, c, d] = veryVeryVeryVeryVeryLongCall(
   aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa
 );
 
-const { a, b } = {
+const {
+  a,
+  b
+} = {
   a: 1,
   b: {
     veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongInnerKey: 0.00000000000001
