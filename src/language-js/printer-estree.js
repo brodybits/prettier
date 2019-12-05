@@ -1539,14 +1539,21 @@ function printPathNoParens(path, options, print, args) {
             return element[itemsKey] && element[itemsKey].length > 1;
           });
 
-        parts.push(
-          group(
+        {
+          const innerResult =
+            // (...)
             concat([
               "[",
               indent(
                 concat([
                   softline,
-                  printArrayItems(path, options, "elements", print)
+                  printArrayItems(
+                    path,
+                    options,
+                    "elements",
+                    print,
+                    n.type === "ArrayPattern"
+                  )
                 ])
               ),
               needsForcedTrailingComma ? "," : "",
@@ -1564,10 +1571,14 @@ function printPathNoParens(path, options, print, args) {
               ),
               softline,
               "]"
-            ]),
-            { shouldBreak }
-          )
-        );
+            ]);
+
+          parts.push(
+            n.type === "ArrayPattern"
+              ? innerResult
+              : group(innerResult, { shouldBreak })
+          );
+        }
       }
 
       parts.push(
@@ -5915,15 +5926,20 @@ function shouldHugArguments(fun) {
   );
 }
 
-function printArrayItems(path, options, printPath, print) {
+function printArrayItems(path, options, printPath, print, maybeIsDestructured) {
   const printedElements = [];
   let separatorParts = [];
 
   path.each(childPath => {
     printedElements.push(concat(separatorParts));
-    printedElements.push(group(print(childPath)));
+    printedElements.push(
+      maybeIsDestructured
+        ? concat([print(childPath)]) // with no grouping (...)
+        : group(print(childPath))
+    );
 
     separatorParts = [",", line];
+
     if (
       childPath.getValue() &&
       isNextLineEmpty(options.originalText, childPath.getValue(), options)
