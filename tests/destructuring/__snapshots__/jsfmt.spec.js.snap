@@ -52,6 +52,12 @@ class A {
   }
 }
 
+const { a, b, c, d } = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
+
+const { a, b, c: { d, e } } = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
+
+const [a, b, c, d] = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
+
 =====================================output=====================================
 const [one, two = null, three = null] = arr;
 a = ([s = 1]) => 1;
@@ -113,6 +119,20 @@ class A {
     return id + title;
   }
 }
+
+const { a, b, c, d } = veryVeryVeryVeryVeryLongCall(
+  aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa
+);
+
+const {
+  a,
+  b,
+  c: { d, e }
+} = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa);
+
+const [a, b, c, d] = veryVeryVeryVeryVeryLongCall(
+  aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa
+);
 
 ================================================================================
 `;

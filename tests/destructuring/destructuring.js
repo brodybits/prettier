@@ -43,3 +43,9 @@ class A {
     return id + title;
   }
 }
+
+const { a, b, c, d } = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
+
+const { a, b, c: { d, e } } = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
+
+const [a, b, c, d] = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
