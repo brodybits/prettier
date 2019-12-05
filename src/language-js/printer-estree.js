@@ -1296,9 +1296,7 @@ function printPathNoParens(path, options, print, args) {
           parent.type !== "CatchClause" &&
           n.properties.some(
             property =>
-              property.value &&
-              (property.value.type === "ObjectPattern" ||
-                property.value.type === "ArrayPattern")
+              property.value && property.value.type === "ObjectPattern"
           )) ||
         (n.type !== "ObjectPattern" &&
           firstProperty &&
