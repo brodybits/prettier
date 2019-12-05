@@ -51,3 +51,7 @@ const { a, b, c: { d, e } } = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaa
 const [a, b, c, d] = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
 
 const { a, b } = { a: 1, b: { veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongInnerKey: 0.00000000000001 } }
+
+const {a, b, c, extraextraextraextraextraextralong} = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
+
+const [a, b, c, extraextraextraextraextraextralong] = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
