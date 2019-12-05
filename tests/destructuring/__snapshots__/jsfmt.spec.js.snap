@@ -58,6 +58,8 @@ const { a, b, c: { d, e } } = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaa
 
 const [a, b, c, d] = veryVeryVeryVeryVeryLongCall(aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa)
 
+const { a, b } = { a: 1, b: { veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongInnerKey: 0.00000000000001 } }
+
 =====================================output=====================================
 const [one, two = null, three = null] = arr;
 a = ([s = 1]) => 1;
@@ -133,6 +135,13 @@ const {
 const [a, b, c, d] = veryVeryVeryVeryVeryLongCall(
   aaaaaaaa.aaaaaaa.aaaaaaa.aaaaaaa
 );
+
+const { a, b } = {
+  a: 1,
+  b: {
+    veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongInnerKey: 0.00000000000001
+  }
+};
 
 ================================================================================
 `;
