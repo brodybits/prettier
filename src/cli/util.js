@@ -24,6 +24,8 @@ const thirdParty = require("../common/third-party");
 const arrayify = require("../utils/arrayify");
 const isTTY = require("../utils/is-tty");
 
+const requireExternal = require("../utils/require-external");
+
 const OPTION_USAGE_THRESHOLD = 25;
 const CHOICE_USAGE_MARGIN = 3;
 const CHOICE_USAGE_INDENTATION = 2;
@@ -203,7 +205,7 @@ function format(context, input, opt) {
   if (context.argv["debug-benchmark"]) {
     let benchmark;
     try {
-      benchmark = eval("require")("benchmark");
+      benchmark = requireExternal("benchmark");
     } catch (err) {
       context.logger.debug(
         "'--debug-benchmark' requires the 'benchmark' package to be installed."

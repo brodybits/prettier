@@ -9,6 +9,8 @@ const mem = require("mem");
 const resolveEditorConfig = require("./resolve-config-editorconfig");
 const loadToml = require("../utils/load-toml");
 
+const requireExternal = require("../utils/require-external");
+
 const getExplorerMemoized = mem(
   opts => {
     const cosmiconfig = thirdParty["cosmiconfig" + (opts.sync ? "Sync" : "")];
@@ -20,7 +22,7 @@ const getExplorerMemoized = mem(
             const modulePath = resolve.sync(result.config, {
               basedir: path.dirname(result.filepath)
             });
-            result.config = eval("require")(modulePath);
+            result.config = requireExternal(modulePath);
           }
 
           if (typeof result.config !== "object") {

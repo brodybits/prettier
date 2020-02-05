@@ -6,6 +6,8 @@ const { ConfigError } = require("../common/errors");
 
 const { locStart, locEnd } = require("../language-js/loc");
 
+const requireExternal = require("../utils/require-external");
+
 // Use defineProperties()/getOwnPropertyDescriptor() to prevent
 // triggering the parsers getters.
 const ownNames = Object.getOwnPropertyNames;
@@ -51,7 +53,7 @@ function resolveParser(opts, parsers) {
     } else {
       try {
         return {
-          parse: eval("require")(path.resolve(process.cwd(), opts.parser)),
+          parse: requireExternal(path.resolve(process.cwd(), opts.parser)),
           astFormat: "estree",
           locStart,
           locEnd
