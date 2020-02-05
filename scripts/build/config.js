@@ -25,20 +25,20 @@ const PROJECT_ROOT = path.resolve(__dirname, "../..");
 /** @type {Bundle[]} */
 const parsers = [
   {
-    input: "src/language-js/parser-babylon.js"
+    input: "src/internal-plugins/parser-babylon.js"
   },
   {
-    input: "src/language-js/parser-flow.js",
+    input: "src/internal-plugins/parser-flow.js",
     strict: false
   },
   {
-    input: "src/language-js/parser-typescript.js",
+    input: "src/internal-plugins/parser-typescript.js",
     replace: {
       'require("@microsoft/typescript-etw")': "undefined"
     }
   },
   {
-    input: "src/language-js/parser-angular.js",
+    input: "src/internal-plugins/parser-angular.js",
     alias: {
       // Force using the CJS file, instead of ESM; i.e. get the file
       // from `"main"` instead of `"module"` (rollup default) of package.json
@@ -57,7 +57,7 @@ const parsers = [
     }
   },
   {
-    input: "src/language-css/parser-postcss.js",
+    input: "src/internal-plugins/parser-postcss.js",
     // postcss has dependency cycles that don't work with rollup
     bundler: "webpack",
     terserOptions: {
@@ -74,13 +74,13 @@ const parsers = [
     }
   },
   {
-    input: "src/language-graphql/parser-graphql.js"
+    input: "src/internal-plugins/parser-graphql.js"
   },
   {
-    input: "src/language-markdown/parser-markdown.js"
+    input: "src/internal-plugins/parser-markdown.js"
   },
   {
-    input: "src/language-handlebars/parser-glimmer.js",
+    input: "src/internal-plugins/parser-glimmer.js",
     alias: {
       entries: [
         // `handlebars` causes webpack warning by using `require.extensions`
@@ -107,10 +107,10 @@ const parsers = [
     }
   },
   {
-    input: "src/language-html/parser-html.js"
+    input: "src/internal-plugins/parser-html.js"
   },
   {
-    input: "src/language-yaml/parser-yaml.js",
+    input: "src/internal-plugins/parser-yaml.js",
     alias: {
       // Force using the CJS file, instead of ESM; i.e. get the file
       // from `"main"` instead of `"module"` (rollup default) of package.json
