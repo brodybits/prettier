@@ -2,14 +2,10 @@
 
 //
 // BEFORE:
-//   eval("require")("./path/to/file")
-//   eval("require")(identifier)
-//   eval("require").cache
+//   eval("require")
 //
 // AFTER:
-//   require("./path/to/file")
-//   require(identifier)
-//   require.cache
+//   require
 //
 
 module.exports = function(babel) {
@@ -19,9 +15,8 @@ module.exports = function(babel) {
     visitor: {
       CallExpression(path) {
         const { node } = path;
-        if (isEvalRequire(node.callee) && node.arguments.length === 1) {
-          const arg = node.arguments[0];
-          path.replaceWith(t.callExpression(t.identifier("require"), [arg]));
+        if (isEvalRequire(node)) {
+          path.replaceWith(t.identifier("require"));
         }
       }
     }
