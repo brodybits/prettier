@@ -15,19 +15,15 @@ module.exports = function(babel) {
     visitor: {
       CallExpression(path) {
         const { node } = path;
-        if (isEvalRequire(node)) {
+        if (
+          t.isCallExpression(node) &&
+          t.isIdentifier(node.callee, { name: "eval" }) &&
+          node.arguments.length === 1 &&
+          t.isLiteral(node.arguments[0], { value: "require" })
+        ) {
           path.replaceWith(t.identifier("require"));
         }
       }
     }
   };
-
-  function isEvalRequire(node) {
-    return (
-      t.isCallExpression(node) &&
-      t.isIdentifier(node.callee, { name: "eval" }) &&
-      node.arguments.length === 1 &&
-      t.isLiteral(node.arguments[0], { value: "require" })
-    );
-  }
 };
