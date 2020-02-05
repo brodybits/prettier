@@ -27,19 +27,6 @@ module.exports = function(babel) {
           }
           path.replaceWith(t.callExpression(t.identifier("require"), [arg]));
         }
-      },
-      MemberExpression(path) {
-        const { node } = path;
-        if (isEvalRequire(node.object)) {
-          path.replaceWith(
-            t.memberExpression(
-              t.identifier("require"),
-              node.property,
-              node.compute,
-              node.optional
-            )
-          );
-        }
       }
     }
   };
