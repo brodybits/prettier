@@ -2,11 +2,16 @@
 
 const uniqBy = require("lodash/uniqBy");
 const partition = require("lodash/partition");
+
 const fs = require("fs");
+
 const globby = require("globby");
+
 const path = require("path");
 const resolve = require("resolve");
+
 const thirdParty = require("./third-party");
+
 const internalPlugins = require("../internal-plugins/internal-plugins");
 
 function loadPlugins(plugins, pluginSearchDirs) {
