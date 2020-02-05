@@ -7,7 +7,7 @@
 //   eval("require").cache
 //
 // AFTER:
-//   require("./file")
+//   require("./path/to/file")
 //   require(identifier)
 //   require.cache
 //
@@ -20,11 +20,7 @@ module.exports = function(babel) {
       CallExpression(path) {
         const { node } = path;
         if (isEvalRequire(node.callee) && node.arguments.length === 1) {
-          let arg = node.arguments[0];
-          if (t.isLiteral(arg) && arg.value.startsWith(".")) {
-            const value = "." + arg.value.slice(arg.value.lastIndexOf("/"));
-            arg = t.stringLiteral(value);
-          }
+          const arg = node.arguments[0];
           path.replaceWith(t.callExpression(t.identifier("require"), [arg]));
         }
       }

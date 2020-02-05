@@ -1,8 +1,7 @@
 "use strict";
 
 // We need to use `eval("require")()` to prevent rollup from hoisting the requires. A babel
-// plugin will look for `eval("require")()` and transform to `require()` in the bundle,
-// and rewrite the paths to require from the top-level.
+// plugin will look for `eval("require")()` and transform to `require()` in the bundle.
 
 // We need to list the parsers and getters so we can load them only when necessary.
 module.exports = [
