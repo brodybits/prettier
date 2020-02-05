@@ -21,14 +21,10 @@ module.exports = [
         return requireInternalPlugin("./parser-babylon").parsers.babel;
       },
       get "babel-flow"() {
-        return requireInternalPlugin("./parser-babylon").parsers[
-          "babel-flow"
-        ];
+        return requireInternalPlugin("./parser-babylon").parsers["babel-flow"];
       },
       get "babel-ts"() {
-        return requireInternalPlugin("./parser-babylon").parsers[
-          "babel-ts"
-        ];
+        return requireInternalPlugin("./parser-babylon").parsers["babel-ts"];
       },
       get babylon() {
         return requireInternalPlugin("./parser-babylon").parsers.babel;
@@ -62,18 +58,15 @@ module.exports = [
       },
       // JS - TypeScript
       get typescript() {
-        return requireInternalPlugin("./parser-typescript").parsers
-          .typescript;
+        return requireInternalPlugin("./parser-typescript").parsers.typescript;
       },
       // JS - Angular Action
       get __ng_action() {
-        return requireInternalPlugin("./parser-angular").parsers
-          .__ng_action;
+        return requireInternalPlugin("./parser-angular").parsers.__ng_action;
       },
       // JS - Angular Binding
       get __ng_binding() {
-        return requireInternalPlugin("./parser-angular").parsers
-          .__ng_binding;
+        return requireInternalPlugin("./parser-angular").parsers.__ng_binding;
       },
       // JS - Angular Interpolation
       get __ng_interpolation() {
@@ -82,8 +75,7 @@ module.exports = [
       },
       // JS - Angular Directive
       get __ng_directive() {
-        return requireInternalPlugin("./parser-angular").parsers
-          .__ng_directive;
+        return requireInternalPlugin("./parser-angular").parsers.__ng_directive;
       }
     }
   },
@@ -110,8 +102,7 @@ module.exports = [
   {
     parsers: {
       get glimmer() {
-        return requireInternalPlugin("./parser-glimmer").parsers
-          .glimmer;
+        return requireInternalPlugin("./parser-glimmer").parsers.glimmer;
       }
     }
   },
@@ -121,8 +112,7 @@ module.exports = [
   {
     parsers: {
       get graphql() {
-        return requireInternalPlugin("./parser-graphql").parsers
-          .graphql;
+        return requireInternalPlugin("./parser-graphql").parsers.graphql;
       }
     }
   },
@@ -132,16 +122,13 @@ module.exports = [
   {
     parsers: {
       get remark() {
-        return requireInternalPlugin("./parser-markdown").parsers
-          .remark;
+        return requireInternalPlugin("./parser-markdown").parsers.remark;
       },
       get markdown() {
-        return requireInternalPlugin("./parser-markdown").parsers
-          .remark;
+        return requireInternalPlugin("./parser-markdown").parsers.remark;
       },
       get mdx() {
-        return requireInternalPlugin("./parser-markdown").parsers
-          .mdx;
+        return requireInternalPlugin("./parser-markdown").parsers.mdx;
       }
     }
   },
