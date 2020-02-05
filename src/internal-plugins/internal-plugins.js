@@ -13,7 +13,7 @@ const yaml = require("../language-yaml");
 
 // We need to list the parsers and getters so we can load them only when necessary.
 module.exports = [
-  // JS
+  // from language-js:
   js,
   {
     parsers: {
@@ -89,7 +89,7 @@ module.exports = [
     }
   },
 
-  // CSS
+  // using parser-postcss:
   css,
   {
     parsers: {
@@ -106,7 +106,7 @@ module.exports = [
     }
   },
 
-  // Handlebars
+  // Handlebars - using parser-glimmer:
   handlebars,
   {
     parsers: {
@@ -117,7 +117,7 @@ module.exports = [
     }
   },
 
-  // GraphQL
+  // GraphQL - using parser-graphql:
   graphql,
   {
     parsers: {
@@ -128,7 +128,7 @@ module.exports = [
     }
   },
 
-  // Markdown
+  // using parser-markdown:
   markdown,
   {
     parsers: {
@@ -147,6 +147,7 @@ module.exports = [
     }
   },
 
+  // using parser-html:
   html,
   {
     parsers: {
@@ -169,7 +170,7 @@ module.exports = [
     }
   },
 
-  // YAML
+  // YAML - using parser-yaml:
   yaml,
   {
     parsers: {
