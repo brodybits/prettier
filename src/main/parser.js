@@ -1,10 +1,10 @@
 "use strict";
 
 const path = require("path");
-const { ConfigError } = require("../common/errors");
-const jsLoc = require("../language-js/loc");
 
-const { locStart, locEnd } = jsLoc;
+const { ConfigError } = require("../common/errors");
+
+const { locStart, locEnd } = require("../language-js/loc");
 
 // Use defineProperties()/getOwnPropertyDescriptor() to prevent
 // triggering the parsers getters.
