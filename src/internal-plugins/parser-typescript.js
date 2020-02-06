@@ -1,3 +1,3 @@
 "use strict";
 
-module.exports = require("../language-js/parser-typescript");
+module.exports = require("../language-js/typescript-parsers-object");
