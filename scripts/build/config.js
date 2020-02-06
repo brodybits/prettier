@@ -38,7 +38,7 @@ const parsers = [
     }
   },
   {
-    input: "src/language-js/parser-angular.js",
+    input: "src/internal-plugins/parser-angular.js",
     alias: {
       // Force using the CJS file, instead of ESM; i.e. get the file
       // from `"main"` instead of `"module"` (rollup default) of package.json

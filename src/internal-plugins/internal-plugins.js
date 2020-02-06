@@ -59,23 +59,19 @@ module.exports = [
       },
       // JS - Angular Action
       get __ng_action() {
-        return eval("require")("../language-js/parser-angular").parsers
-          .__ng_action;
+        return eval("require")("./parser-angular").parsers.__ng_action;
       },
       // JS - Angular Binding
       get __ng_binding() {
-        return eval("require")("../language-js/parser-angular").parsers
-          .__ng_binding;
+        return eval("require")("./parser-angular").parsers.__ng_binding;
       },
       // JS - Angular Interpolation
       get __ng_interpolation() {
-        return eval("require")("../language-js/parser-angular").parsers
-          .__ng_interpolation;
+        return eval("require")("./parser-angular").parsers.__ng_interpolation;
       },
       // JS - Angular Directive
       get __ng_directive() {
-        return eval("require")("../language-js/parser-angular").parsers
-          .__ng_directive;
+        return eval("require")("./parser-angular").parsers.__ng_directive;
       }
     }
   },
