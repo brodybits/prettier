@@ -28,7 +28,7 @@ const parsers = [
     input: "src/internal-plugins/parser-babylon.js"
   },
   {
-    input: "src/language-js/parser-flow.js",
+    input: "src/internal-plugins/parser-flow.js",
     strict: false
   },
   {

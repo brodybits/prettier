@@ -51,7 +51,7 @@ module.exports = [
       },
       // JS - Flow
       get flow() {
-        return eval("require")("../language-js/parser-flow").parsers.flow;
+        return eval("require")("./parser-flow").parsers.flow;
       },
       // JS - TypeScript
       get typescript() {
