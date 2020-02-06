@@ -1,3 +1,3 @@
 "use strict";
 
-module.exports = require("../language-js/parser-angular");
+module.exports = require("../language-js/angular-parsers-object");
