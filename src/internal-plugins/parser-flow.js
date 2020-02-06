@@ -1,3 +1,3 @@
 "use strict";
 
-module.exports = require("../language-js/parser-flow");
+module.exports = require("../language-js/flow-parsers-object");
