@@ -29,7 +29,7 @@
     "src/language-markdown",
     "src/language-yaml",
     // [TBD] JavaScript sources affected by JSDoc issues in src/language-*:
-    "src/common/internal-plugins.js",
+    "src/internal-plugins",
     "src/common/load-plugins.js",
     "src/cli/index.js",
     "src/cli/util.js",
