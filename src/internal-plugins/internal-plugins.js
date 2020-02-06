@@ -1,5 +1,13 @@
 "use strict";
 
+const js = require("../language-js");
+const css = require("../language-css");
+const handlebars = require("../language-handlebars");
+const graphql = require("../language-graphql");
+const markdown = require("../language-markdown");
+const html = require("../language-html");
+const yaml = require("../language-yaml");
+
 // We need to use `eval("require")()` to prevent rollup from hoisting the requires. A babel
 // plugin will look for `eval("require")()` and transform to `require()` in the bundle,
 // and rewrite the paths to require from the top-level.
@@ -7,7 +15,7 @@
 // We need to list the parsers and getters so we can load them only when necessary.
 module.exports = [
   // JS
-  require("../language-js"),
+  js,
   {
     parsers: {
       // JS - Babel
@@ -83,7 +91,7 @@ module.exports = [
   },
 
   // CSS
-  require("../language-css"),
+  css,
   {
     parsers: {
       // TODO: switch these to just `postcss` and use `language` instead.
@@ -100,7 +108,7 @@ module.exports = [
   },
 
   // Handlebars
-  require("../language-handlebars"),
+  handlebars,
   {
     parsers: {
       get glimmer() {
@@ -111,7 +119,7 @@ module.exports = [
   },
 
   // GraphQL
-  require("../language-graphql"),
+  graphql,
   {
     parsers: {
       get graphql() {
@@ -122,7 +130,7 @@ module.exports = [
   },
 
   // Markdown
-  require("../language-markdown"),
+  markdown,
   {
     parsers: {
       get remark() {
@@ -140,7 +148,7 @@ module.exports = [
     }
   },
 
-  require("../language-html"),
+  html,
   {
     parsers: {
       // HTML
@@ -163,7 +171,7 @@ module.exports = [
   },
 
   // YAML
-  require("../language-yaml"),
+  yaml,
   {
     parsers: {
       get yaml() {
