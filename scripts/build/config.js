@@ -32,7 +32,7 @@ const parsers = [
     strict: false
   },
   {
-    input: "src/language-js/parser-typescript.js",
+    input: "src/internal-plugins/parser-typescript.js",
     replace: {
       'require("@microsoft/typescript-etw")': "undefined"
     }

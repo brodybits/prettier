@@ -55,8 +55,7 @@ module.exports = [
       },
       // JS - TypeScript
       get typescript() {
-        return eval("require")("../language-js/parser-typescript").parsers
-          .typescript;
+        return eval("require")("./parser-typescript").parsers.typescript;
       },
       // JS - Angular Action
       get __ng_action() {
