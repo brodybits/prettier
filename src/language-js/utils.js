@@ -15,11 +15,10 @@ const handleComments = require("./comments");
  * @typedef {import("estree").BaseNode} BaseNode
  * @typedef {import("estree").BaseExpression} BaseExpression
  * @typedef {import("estree").Expression} Expression
+ * @typedef {import("estree").MemberExpression} MemberExpression
  *
  * @typedef {Object} MemberExpressionNode
- * @mixes BaseExpression
- * @property {Expression} object
- * @property {Expression} property
+ * @mixes MemberExpression
  *
  * @typedef {Object} TemplateLiteralNode
  * @mixes BaseNode
