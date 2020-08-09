@@ -22,7 +22,7 @@ const handleComments = require("./comments");
  *
  * @typedef {Object} TemplateLiteralNode
  * @mixes BaseNode
- * @property {MemberExpressionNode[]} expressions
+ * @property {Expression[]} expressions
  */
 
 // We match any whitespace except line terminators because
