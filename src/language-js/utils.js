@@ -17,10 +17,10 @@ const handleComments = require("./comments");
  * @typedef {import("estree").Expression} Expression
  * @typedef {import("estree").MemberExpression} MemberExpression
  *
- * @typedef {Object} MemberExpressionNode
+ * @typedef {object} MemberExpressionNode
  * @mixes MemberExpression
  *
- * @typedef {Object} TemplateLiteralNode
+ * @typedef {object} TemplateLiteralNode
  * @mixes BaseNode
  * @property {Expression[]} expressions
  */
