@@ -12,17 +12,11 @@ const {
 const handleComments = require("./comments");
 
 /**
- * @typedef {import("estree").BaseNode} BaseNode
- * @typedef {import("estree").BaseExpression} BaseExpression
- * @typedef {import("estree").Expression} Expression
- * @typedef {import("estree").MemberExpression} MemberExpression
- *
- * @typedef {object} MemberExpressionNode
- * @mixes MemberExpression
- *
- * @typedef {object} TemplateLiteralNode
- * @mixes BaseNode
- * @property {Expression[]} expressions
+ * @typedef {import("estree").Node} ESTreeNode
+ * @typedef {import("@babel/types").Node} BabelNode
+ * @typedef {import("@typescript-eslint/types").TSESTree.Node} TSNode
+ * @typedef {import("angular-estree-parser/lib/types").NGNode} NGNode
+ * @typedef {ESTreeNode | BabelNode | TSNode | NGNode} Node
  */
 
 // We match any whitespace except line terminators because
@@ -470,7 +464,14 @@ function isNgForOf(node, index, parentNode) {
   );
 }
 
-/** @param node {TemplateLiteralNode} */
+/**
+ * @typedef {import("estree").TemplateLiteral} ESTreeTemplateLiteral
+ * @typedef {import("@babel/types").TemplateLiteral} BabelTemplateLiteral
+ * @typedef {ESTreeTemplateLiteral | BabelTemplateLiteral} TemplateLiteral
+ *
+ * @param {TemplateLiteral} node
+ * @returns {boolean}
+ */
 function isSimpleTemplateLiteral(node) {
   if (node.expressions.length === 0) {
     return false;
@@ -899,7 +900,7 @@ function isLongCurriedCallExpression(path) {
 }
 
 /**
- * @param {MemberExpressionNode} node
+ * @param {Node} node
  * @param {number} depth
  * @returns {boolean}
  */
@@ -912,6 +913,7 @@ function isSimpleCallArgument(node, depth) {
   const plusTwo = (node) => isSimpleCallArgument(node, depth + 2);
 
   const regexpPattern =
+    // @ts-ignore
     (node.type === "Literal" && node.regex && node.regex.pattern) ||
     (node.type === "RegExpLiteral" && node.pattern);
 
