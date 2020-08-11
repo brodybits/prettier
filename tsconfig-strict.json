@@ -10,6 +10,7 @@
   },
   "include": [
     "src/common/common-options.js",
+    "src/common/resolve.js",
     "src/utils/*.js"
   ]
 }
