@@ -1,5 +1,15 @@
 "use strict";
 
+/**
+ * @typedef {import("@typescript-eslint/types").TSESTree.Node} Node - TODO import from ast.d.ts (see PR #8759)
+ * @property {{declaration: Node[]?} | null} declaration
+ */
+
+/**
+ * @param {Node} node
+ * @param {{ignoreDecorators: boolean?}} [opts]
+ * @returns {number}
+ */
 function locStart(node, opts) {
   const { ignoreDecorators } = opts || {};
 

@@ -10,8 +10,12 @@
   },
   "include": [
     "src/common/common-options.js",
+    // XXX TBD (...)
+    // "src/common/get-file-info.js",
+    // "src/main/core-options.js",
     "src/common/resolve.js",
     "src/config/*.js",
+    "src/language-js/loc.js",
     "src/utils/*.js"
   ]
 }
