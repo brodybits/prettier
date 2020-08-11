@@ -11,6 +11,7 @@
   "include": [
     "src/common/common-options.js",
     "src/common/resolve.js",
+    "src/config/*.js",
     "src/utils/*.js"
   ]
 }
