@@ -1,11 +1,19 @@
 "use strict";
 const getLast = require("../utils/get-last");
 
+/**
+ * @param {FastPath} path
+ * @param {number} count
+ */
 function getNodeHelper(path, count) {
   const stackIndex = getNodeStackIndexHelper(path.stack, count);
   return stackIndex === -1 ? null : path.stack[stackIndex];
 }
 
+/**
+ * @param {any[]} stack
+ * @param {number} count
+ */
 function getNodeStackIndexHelper(stack, count) {
   for (let i = stack.length - 1; i >= 0; i -= 2) {
     const value = stack[i];
@@ -17,6 +25,7 @@ function getNodeStackIndexHelper(stack, count) {
 }
 
 class FastPath {
+  /** @param {any} value */
   constructor(value) {
     this.stack = [value];
   }
@@ -49,11 +58,16 @@ class FastPath {
     return getNodeHelper(this, count + 1);
   }
 
-  // Temporarily push properties named by string arguments given after the
-  // callback function onto this.stack, then call the callback with a
-  // reference to this (modified) FastPath object. Note that the stack will
-  // be restored to its original state after the callback is finished, so it
-  // is probably a mistake to retain a reference to the path.
+  /**
+   * Temporarily push properties named by string arguments given after the
+   * callback function onto this.stack, then call the callback with a
+   * reference to this (modified) FastPath object. Note that the stack will
+   * be restored to its original state after the callback is finished, so it
+   * is probably a mistake to retain a reference to the path.
+   *
+   * @param {(path: FastPath) => any} callback
+   * @param {string[]} names
+   */
   call(callback, ...names) {
     const { stack } = this;
     const { length } = stack;
@@ -68,6 +82,10 @@ class FastPath {
     return result;
   }
 
+  /**
+   * @param {(path: FastPath) => any} callback
+   * @param {number} count
+   */
   callParent(callback, count = 0) {
     const stackIndex = getNodeStackIndexHelper(this.stack, count + 1);
     const parentValues = this.stack.splice(stackIndex + 1);
@@ -76,10 +94,15 @@ class FastPath {
     return result;
   }
 
-  // Similar to FastPath.prototype.call, except that the value obtained by
-  // accessing this.getValue()[name1][name2]... should be array-like. The
-  // callback will be called with a reference to this path object for each
-  // element of the array.
+  /**
+   * Similar to FastPath.prototype.call, except that the value obtained by
+   * accessing this.getValue()[name1][name2]... should be array-like. The
+   * callback will be called with a reference to this path object for each
+   * element of the array.
+   *
+   * @param {(path: FastPath) => any} callback
+   * @param {string[]} names
+   */
   each(callback, ...names) {
     const { stack } = this;
     const { length } = stack;
@@ -103,9 +126,14 @@ class FastPath {
     stack.length = length;
   }
 
-  // Similar to FastPath.prototype.each, except that the results of the
-  // callback function invocations are stored in an array and returned at
-  // the end of the iteration.
+  /**
+   * Similar to FastPath.prototype.each, except that the results of the
+   * callback function invocations are stored in an array and returned at
+   * the end of the iteration.
+   *
+   * @param {(path: FastPath, index: number) => any} callback
+   * @param {string[]} names
+   */
   map(callback, ...names) {
     const { stack } = this;
     const { length } = stack;

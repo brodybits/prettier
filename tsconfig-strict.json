@@ -9,11 +9,29 @@
     "strict": true
   },
   "include": [
+    // XXX TBD (...)
+    // "src/common/*.js",
     "src/common/common-options.js",
     // XXX TBD (...)
     // "src/common/get-file-info.js",
     // "src/main/core-options.js",
+    "src/common/create-ignorer.js",
+    "src/common/end-of-line.js",
+    "src/common/errors.js",
+    "src/common/fast-path.js",
+    // imports multiple outside modules:
+    // - src/main/options.js
+    // - src/config/resolve-config.js
+    // "src/common/get-file-info.js",
+    // imports src/languages.js (...)
+    // FUTURE TODO: move out of src/common:
+    // "src/common/load-plugins.js",
+    "src/common/parser-create-error.js",
     "src/common/resolve.js",
+    "src/common/third-party.js",
+    // tbd src/common/util*.js import src/main/support.js:
+    // "src/common/util-shared.js",
+    // "src/common/util.js",
     "src/config/*.js",
     "src/language-js/loc.js",
     "src/utils/*.js"
