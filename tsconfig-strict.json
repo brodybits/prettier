@@ -9,6 +9,7 @@
     "strict": true
   },
   "include": [
-    "src/common/common-options.js"
+    "src/common/common-options.js",
+    "src/utils/*.js"
   ]
 }
