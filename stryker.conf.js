@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * @type {import('@stryker-mutator/api/core').StrykerOptions}
  */
