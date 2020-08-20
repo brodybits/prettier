@@ -3,7 +3,14 @@
  */
 module.exports = {
   mutator: "javascript",
-  mutate: ["index.js", "src/**/*.js"],
+  mutate: [
+    "index.js",
+    "src/**/*.js",
+    // not working with Stryker 4.0.0-beta.3:
+    "!src/language-js/index.js",
+    "!src/language-js/needs-parens.js",
+    "!src/language-js/printer-estree.js",
+  ],
   packageManager: "yarn",
   reporters: ["html", "clear-text", "progress"],
   testRunner: "command",
