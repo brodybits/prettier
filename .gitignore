@@ -15,3 +15,6 @@
 /coverage
 .idea
 package-lock.json
+
+# stryker temp files
+.stryker-tmp
