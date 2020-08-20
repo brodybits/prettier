@@ -7,5 +7,5 @@ module.exports = {
   reporters: ["html", "clear-text", "progress"],
   testRunner: "command",
   transpilers: [],
-  coverageAnalysis: "all",
+  coverageAnalysis: "off",
 };
