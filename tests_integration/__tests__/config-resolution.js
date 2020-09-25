@@ -2,7 +2,7 @@
 
 const path = require("path");
 
-const prettier = require("prettier/local");
+const prettier = require("prettier-local");
 const runPrettier = require("../runPrettier");
 
 expect.addSnapshotSerializer(require("../path-serializer"));
@@ -246,6 +246,35 @@ test("API resolveConfig.sync overrides work with absolute paths", () => {
   const file = path.join(__dirname, "../cli/config/filepath/subfolder/file.js");
   expect(prettier.resolveConfig.sync(file)).toMatchObject({
     tabWidth: 6,
+  });
+});
+
+test("API resolveConfig.sync overrides excludeFiles", () => {
+  const notOverride = path.join(
+    __dirname,
+    "../cli/config/overrides-exclude-files/foo"
+  );
+  expect(prettier.resolveConfig.sync(notOverride)).toMatchObject({
+    singleQuote: true,
+    trailingComma: "all",
+  });
+
+  const singleQuote = path.join(
+    __dirname,
+    "../cli/config/overrides-exclude-files/single-quote.js"
+  );
+  expect(prettier.resolveConfig.sync(singleQuote)).toMatchObject({
+    singleQuote: true,
+    trailingComma: "es5",
+  });
+
+  const doubleQuote = path.join(
+    __dirname,
+    "../cli/config/overrides-exclude-files/double-quote.js"
+  );
+  expect(prettier.resolveConfig.sync(doubleQuote)).toMatchObject({
+    singleQuote: false,
+    trailingComma: "es5",
   });
 });
 

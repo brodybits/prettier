@@ -72,34 +72,30 @@ function embed(path, print, textToDoc, options) {
         return;
       }
 
-      if (isVueNonHtmlBlock(node, options)) {
+      if (!node.isSelfClosing && isVueNonHtmlBlock(node, options)) {
         const parser = inferScriptParser(node, options);
         if (!parser) {
           return;
         }
 
-        let doc;
-        try {
+        const content = getNodeContent(node, options);
+        let isEmpty = /^\s*$/.test(content);
+        let doc = "";
+        if (!isEmpty) {
           doc = textToDoc(
-            htmlTrimPreserveIndentation(getNodeContent(node, options)),
+            htmlTrimPreserveIndentation(content),
             { parser },
             { stripTrailingHardline: true }
           );
-        } catch (_) {
-          return;
-        }
-
-        // `textToDoc` don't throw on `production` mode
-        if (!doc) {
-          return;
+          isEmpty = doc === "";
         }
 
         return concat([
           printOpeningTagPrefix(node, options),
           group(printOpeningTag(path, options, print)),
-          hardline,
+          isEmpty ? "" : hardline,
           doc,
-          hardline,
+          isEmpty ? "" : hardline,
           printClosingTag(node, options),
           printClosingTagSuffix(node, options),
         ]);
@@ -446,10 +442,8 @@ function genericPrint(path, options, print) {
         ]),
       ]);
     }
-    case "yaml":
-    case "toml":
-      return concat(replaceEndOfLineWith(node.raw, literalline));
     default:
+      /* istanbul ignore next */
       throw new Error(`Unexpected node type ${node.type}`);
   }
 }
@@ -957,6 +951,7 @@ function printOpeningTagEndMarker(node) {
 
 function printClosingTagStartMarker(node, options) {
   assert(!node.isSelfClosing);
+  /* istanbul ignore next */
   if (shouldNotPrintClosingTag(node, options)) {
     return "";
   }

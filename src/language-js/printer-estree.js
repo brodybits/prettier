@@ -1,5 +1,8 @@
 "use strict";
 
+/** @typedef {import("../document").Doc} Doc */
+
+/** @type {import("assert")} */
 const assert = require("assert");
 
 // TODO(azz): anything that imports from main shouldn't be in a `language-*` dir.
@@ -256,7 +259,9 @@ function printPathNoParens(path, options, print, args) {
     return htmlBinding;
   }
 
+  /** @type{Doc[]} */
   let parts = [];
+
   switch (n.type) {
     case "JsExpressionRoot":
       return path.call(print, "node");
@@ -481,17 +486,23 @@ function printPathNoParens(path, options, print, args) {
       //   )
 
       const hasJSX = isJSXNode(n.right);
-      const firstGroupIndex = parts.findIndex((part) => part.type === "group");
+
+      const firstGroupIndex = parts.findIndex(
+        (part) => typeof part !== "string" && part.type === "group"
+      );
+
       // Separate the leftmost expression, possibly with its leading comments.
       const headParts = parts.slice(
         0,
         firstGroupIndex === -1 ? 1 : firstGroupIndex + 1
       );
+
       const rest = concat(
         parts.slice(headParts.length, hasJSX ? -1 : undefined)
       );
 
       const groupId = Symbol("logicalChain-" + ++uid);
+
       const chain = group(
         concat([
           // Don't include the initial expression in the indentation
@@ -672,8 +683,9 @@ function printPathNoParens(path, options, print, args) {
             options.locEnd
           );
           return (
+            nextCharacter !== false &&
             options.originalText.slice(nextCharacter, nextCharacter + 2) ===
-            "=>"
+              "=>"
           );
         }
       );
@@ -3670,13 +3682,15 @@ function printMethod(path, options, print) {
     if (value.async) {
       parts.push("async ");
     }
-    if (value.generator) {
-      parts.push("*");
-    }
   } else {
     assert.ok(kind === "get" || kind === "set");
 
     parts.push(kind, " ");
+  }
+
+  // A `getter`/`setter` can't be a generator, but it's recoverable
+  if (value.generator) {
+    parts.push("*");
   }
 
   parts.push(
@@ -3987,6 +4001,7 @@ function shouldPrintParamsWithoutParens(path, options) {
   }
 
   // Fallback default; should be unreachable
+  /* istanbul ignore next */
   return false;
 }
 
@@ -4067,7 +4082,10 @@ function printReturnType(path, print, options) {
 
 function printExportDeclaration(path, options, print) {
   const decl = path.getValue();
+
   const semi = options.semi ? ";" : "";
+
+  /** @type{Doc[]} */
   const parts = ["export "];
 
   const isDefault = decl.default || decl.type === "ExportDefaultDeclaration";
@@ -4742,6 +4760,7 @@ function printJSXElement(path, options, print) {
 
 function maybeWrapJSXElementInParens(path, elem, options) {
   const parent = path.getParentNode();
+  /* istanbul ignore next */
   if (!parent) {
     return elem;
   }
@@ -4823,7 +4842,9 @@ function printBinaryishExpressions(
   isNested,
   isInsideParenthesis
 ) {
+  /** @type{Doc[]} */
   let parts = [];
+
   const node = path.getValue();
 
   // We treat BinaryExpression and LogicalExpression nodes the same.
@@ -5268,6 +5289,7 @@ function printComment(commentPath, options) {
         .slice(options.locStart(comment), options.locEnd(comment))
         .trimEnd();
     default:
+      /* istanbul ignore next */
       throw new Error("Not a comment: " + JSON.stringify(comment));
   }
 }

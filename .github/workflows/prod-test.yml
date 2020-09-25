@@ -13,9 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.2
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2.3.3
 
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.1
@@ -50,6 +48,7 @@ jobs:
         if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'dependabot/npm_and_yarn/')
         uses: preactjs/compressed-size-action@v2.0.1
         with:
+          pattern: "dist/**"
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           compression: none
 
@@ -59,9 +58,7 @@ jobs:
     needs: [build]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.2
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2.3.3
 
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.1
@@ -79,6 +76,7 @@ jobs:
         run: yarn lint:dist
 
   test:
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
@@ -90,19 +88,23 @@ jobs:
           - "14"
           - "12"
           - "10"
+        include:
+          - os: "ubuntu-latest"
+            node: "14"
+            FULL_TEST: true
         exclude:
           - os: "macos-latest"
             node: "12"
           - os: "windows-latest"
             node: "12"
+    env:
+      FULL_TEST: ${{ matrix.FULL_TEST }}
     name: Node.js ${{ matrix.node }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     needs: [build]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.2
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2.3.3
 
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.1
