@@ -2,7 +2,7 @@
 const fs = require("fs");
 const { prettierCli } = require("../env");
 
-describe("CLI", () => {
+xdescribe("CLI", () => {
   test("CLI should be executable.", () => {
     expect(() => fs.accessSync(prettierCli, fs.constants.X_OK)).not.toThrow();
   });
