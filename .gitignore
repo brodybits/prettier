@@ -21,3 +21,6 @@ package-lock.json
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# stryker temp files
+.stryker-tmp
