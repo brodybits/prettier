@@ -304,6 +304,7 @@ export class Board {
 =====================================output=====================================
 @Entity()
 export class Board {
+
   @PrimaryGeneratedColumn()
   id: number;
 

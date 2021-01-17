@@ -166,6 +166,7 @@ class Demo {
 
 =====================================output=====================================
 class Demo {
+
   firstMethod() {}
   secondMethod() {}
 
