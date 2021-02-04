@@ -150,6 +150,71 @@ class A4 {
 ================================================================================
 `;
 
+exports[`leading-line-break.js format 1`] = `
+====================================options=====================================
+parsers: ["babel", "flow", "typescript"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+class Demo {
+
+  firstMethod() {}
+  secondMethod() {}
+
+  thirdMethod() {}
+}
+
+class Demo2 {
+
+  // leading comment
+
+  firstMethod() {}
+  secondMethod() {}
+
+  thirdMethod() {}
+}
+
+class Demo3 {
+  // leading comment
+
+  firstMethod() {}
+  secondMethod() {}
+
+  thirdMethod() {}
+}
+
+=====================================output=====================================
+class Demo {
+
+  firstMethod() {}
+  secondMethod() {}
+
+  thirdMethod() {}
+}
+
+class Demo2 {
+
+  // leading comment
+
+  firstMethod() {}
+  secondMethod() {}
+
+  thirdMethod() {}
+}
+
+class Demo3 {
+
+  // leading comment
+
+  firstMethod() {}
+  secondMethod() {}
+
+  thirdMethod() {}
+}
+
+================================================================================
+`;
+
 exports[`member.js format 1`] = `
 ====================================options=====================================
 parsers: ["babel", "flow", "typescript"]

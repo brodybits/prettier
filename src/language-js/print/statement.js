@@ -1,8 +1,10 @@
 "use strict";
 
+const { isPreviousLineEmpty } = require("../../common/util");
 const {
   builders: { hardline },
 } = require("../../document");
+const { locStart } = require("../loc");
 const pathNeedsParens = require("../needs-parens");
 const {
   getLeftSidePathName,
@@ -25,6 +27,14 @@ function printStatementSequence(path, options, print, property) {
   const parts = [];
   const isClassBody = node.type === "ClassBody";
   const lastStatement = getLastStatement(node[property]);
+
+  if (
+    isClassBody &&
+    node.body.length > 0 &&
+    isPreviousLineEmpty(options.originalText, node.body[0], locStart)
+  ) {
+    parts.push(hardline);
+  }
 
   path.each((path, index, statements) => {
     const node = path.getValue();
