@@ -1,3 +1,21 @@
+# prettierx-update-branch-001
+
+intended to help rebase some prettierX JavaScript features on **Prettier 2.3.1(+)**
+
+(in a hopefully relatively clean manner)
+
+with some updates including:
+
+- update package name to: prettierx-update-branch-001
+- remove project URLs from package.json
+- move flow-parser & typescript dependencies to devDependencies
+- include some Prettier updates from GitHub, with more info in `changelog_unreleased` ([./changelog_unreleased](./changelog_unreleased)):
+  - update some package dependencies
+  - an update from Prettier `next` branch to use PostCSS 8
+  - some other updates from **Prettier main branch**
+
+NOTE: This version branch is MISSING package dependency notes & documentation updates.
+
 # 2.3.1
 
 [diff](https://github.com/prettier/prettier/compare/2.3.0...2.3.1)

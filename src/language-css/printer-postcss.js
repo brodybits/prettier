@@ -38,9 +38,7 @@ const {
   insideURLFunctionInImportAtRuleNode,
   isKeyframeAtRuleKeywords,
   isWideKeywords,
-  isSCSS,
   isLastNode,
-  isLessParser,
   isSCSSControlDirectiveNode,
   isDetachedRulesetDeclarationNode,
   isRelationalOperatorNode,
@@ -123,7 +121,9 @@ function genericPrint(path, options, print) {
               node.selector.type === "selector-unknown" &&
               lastLineHasInlineComment(node.selector.value)
                 ? line
-                : " ",
+                : node.selector
+                ? " "
+                : "",
               "{",
               node.nodes.length > 0
                 ? indent([hardline, printNodeSequence(path, options, print)])
@@ -141,6 +141,8 @@ function genericPrint(path, options, print) {
       const { between: rawBetween } = node.raws;
       const trimmedBetween = rawBetween.trim();
       const isColon = trimmedBetween === ":";
+      const isValueAllSpace =
+        typeof node.value === "string" && /^ *$/.test(node.value);
 
       let value = hasComposesNode(node)
         ? removeLines(print("value"))
@@ -155,8 +157,8 @@ function genericPrint(path, options, print) {
         insideICSSRuleNode(path) ? node.prop : maybeToLowerCase(node.prop),
         trimmedBetween.startsWith("//") ? " " : "",
         trimmedBetween,
-        node.extend ? "" : " ",
-        isLessParser(options) && node.extend && node.selector
+        node.extend || isValueAllSpace ? "" : " ",
+        options.parser === "less" && node.extend && node.selector
           ? ["extend(", print("selector"), ")"]
           : "",
         value,
@@ -198,7 +200,7 @@ function genericPrint(path, options, print) {
         !parentNode.raws.semicolon &&
         options.originalText[locEnd(node) - 1] !== ";";
 
-      if (isLessParser(options)) {
+      if (options.parser === "less") {
         if (node.mixin) {
           return [
             print("selector"),
@@ -237,6 +239,11 @@ function genericPrint(path, options, print) {
           ];
         }
       }
+      const isImportUnknownValueEndsWithSemiColon =
+        node.name === "import" &&
+        node.params &&
+        node.params.type === "value-unknown" &&
+        node.params.value.endsWith(";");
 
       return [
         "@",
@@ -266,21 +273,24 @@ function genericPrint(path, options, print) {
           : "",
         node.selector ? indent([" ", print("selector")]) : "",
         node.value
-          ? group([
-              " ",
-              print("value"),
-              isSCSSControlDirectiveNode(node)
-                ? hasParensAroundNode(node)
-                  ? " "
-                  : line
-                : "",
-            ])
+          ? group(
+              // [prettierx merge update from prettier@2.3.1 ...]
+              [
+                " ",
+                path.call(print, "value"),
+                isSCSSControlDirectiveNode(node, options)
+                  ? hasParensAroundNode(node)
+                    ? " "
+                    : line
+                  : "",
+              ]
+            )
           : node.name === "else"
           ? " "
           : "",
         node.nodes
           ? [
-              isSCSSControlDirectiveNode(node)
+              isSCSSControlDirectiveNode(node, options)
                 ? ""
                 : (node.selector &&
                     !node.selector.nodes &&
@@ -299,7 +309,8 @@ function genericPrint(path, options, print) {
               softline,
               "}",
             ]
-          : isTemplatePlaceholderNodeWithoutSemiColon
+          : isTemplatePlaceholderNodeWithoutSemiColon ||
+            isImportUnknownValueEndsWithSemiColon
           ? ""
           : ";",
       ];
@@ -521,7 +532,8 @@ function genericPrint(path, options, print) {
           declAncestorProp.startsWith("grid-template"));
       const atRuleAncestorNode = getAncestorNode(path, "css-atrule");
       const isControlDirective =
-        atRuleAncestorNode && isSCSSControlDirectiveNode(atRuleAncestorNode);
+        atRuleAncestorNode &&
+        isSCSSControlDirectiveNode(atRuleAncestorNode, options);
       const hasInlineComment = node.groups.some((node) =>
         isInlineValueCommentNode(node)
       );
@@ -854,7 +866,7 @@ function genericPrint(path, options, print) {
         return group(indent(fill(res)));
       }
 
-      const isSCSSMapItem = isSCSSMapItemNode(path);
+      const isSCSSMapItem = isSCSSMapItemNode(path, options);
 
       const lastItem = getLast(node.groups);
       const isLastItemComment = lastItem && lastItem.type === "value-comment";
@@ -892,7 +904,7 @@ function genericPrint(path, options, print) {
           ]),
           ifBreak(
             !isLastItemComment &&
-              isSCSS(options.parser, options.originalText) &&
+              options.parser === "scss" &&
               isSCSSMapItem &&
               shouldPrintComma(options)
               ? ","
